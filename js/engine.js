@@ -46,6 +46,7 @@
   function beginRun() {
     JD.resetPlayer();
     JD.particles.length = 0;
+    JD.trail.length = 0;
     JD.camera.x = JD.player.x - JD.config.camOffsetX;
     JD.camera.y = 0;
     JD.progress = 0;
@@ -166,6 +167,8 @@
 
     JD.camera.x = p.x - cfg.camOffsetX;
     JD.camera.y = 0;
+
+    JD.emitTrail(dt);
 
     JD.progress = Math.max(0, Math.min(100, (p.x / w.endX) * 100));
     if (p.x >= w.endX) { JD.win(); return; }

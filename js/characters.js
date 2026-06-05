@@ -6,17 +6,17 @@
 
   // shape: 'cube' | 'ball'    face: drawing style key    c1/c2: body gradient    glow: outline neon
   JD.characters = [
-    { id: 'cyan-bot',   name: 'BYTE',    shape: 'cube', face: 'angry',   c1: '#19d3e6', c2: '#1466c9', glow: '#18e0ff' },
-    { id: 'red-fang',   name: 'BLAZE',   shape: 'cube', face: 'fang',    c1: '#ff8a1e', c2: '#ff2d2d', glow: '#ff5a2d' },
-    { id: 'green-grin', name: 'CHOMP',   shape: 'cube', face: 'grin',    c1: '#4dff8a', c2: '#19c2e6', glow: '#4dff5a' },
-    { id: 'purple-mon', name: 'VOID',    shape: 'cube', face: 'monster', c1: '#7a18ff', c2: '#3a0a8a', glow: '#9b4dff' },
-    { id: 'yellow-mon', name: 'GNARL',   shape: 'ball', face: 'monster', c1: '#ffe34d', c2: '#ff8a1e', glow: '#ffe34d' },
-    { id: 'pink-fang',  name: 'FIZZ',    shape: 'ball', face: 'fang',    c1: '#ff3df0', c2: '#7a18ff', glow: '#ff3df0' },
-    { id: 'lime-eye',   name: 'PEEK',    shape: 'ball', face: 'eye',     c1: '#aaff4d', c2: '#19c2e6', glow: '#aaff4d' },
-    { id: 'blue-gear',  name: 'COG',     shape: 'ball', face: 'eye',     c1: '#2d6dff', c2: '#1a2d8a', glow: '#3d8aff' },
-    { id: 'blue-teeth', name: 'FROST',   shape: 'ball', face: 'angry',   c1: '#19e6ff', c2: '#1466c9', glow: '#18e0ff' },
-    { id: 'bandit',     name: 'SLY',     shape: 'ball', face: 'grin',    c1: '#9bbf2d', c2: '#7a18ff', glow: '#c2ff4d' },
-    { id: 'pixel-dino', name: 'REX',     shape: 'cube', face: 'angry',   c1: '#7a4dff', c2: '#2d6dff', glow: '#9b4dff' }
+    { id: 'cyan-bot',   name: 'BYTE',    shape: 'cube', face: 'angry',   c1: '#19d3e6', c2: '#1466c9', glow: '#18e0ff', trail: 'spark' },
+    { id: 'red-fang',   name: 'BLAZE',   shape: 'cube', face: 'fang',    c1: '#ff8a1e', c2: '#ff2d2d', glow: '#ff5a2d', trail: 'fire' },
+    { id: 'green-grin', name: 'CHOMP',   shape: 'cube', face: 'grin',    c1: '#4dff8a', c2: '#19c2e6', glow: '#4dff5a', trail: 'toxic' },
+    { id: 'purple-mon', name: 'VOID',    shape: 'cube', face: 'monster', c1: '#7a18ff', c2: '#3a0a8a', glow: '#9b4dff', trail: 'plasma' },
+    { id: 'yellow-mon', name: 'GNARL',   shape: 'ball', face: 'monster', c1: '#ffe34d', c2: '#ff8a1e', glow: '#ffe34d', trail: 'star' },
+    { id: 'pink-fang',  name: 'FIZZ',    shape: 'ball', face: 'fang',    c1: '#ff3df0', c2: '#7a18ff', glow: '#ff3df0', trail: 'bubble' },
+    { id: 'lime-eye',   name: 'PEEK',    shape: 'ball', face: 'eye',     c1: '#aaff4d', c2: '#19c2e6', glow: '#aaff4d', trail: 'rainbow' },
+    { id: 'blue-gear',  name: 'COG',     shape: 'ball', face: 'eye',     c1: '#2d6dff', c2: '#1a2d8a', glow: '#3d8aff', trail: 'streak' },
+    { id: 'blue-teeth', name: 'FROST',   shape: 'ball', face: 'angry',   c1: '#19e6ff', c2: '#1466c9', glow: '#18e0ff', trail: 'frost' },
+    { id: 'bandit',     name: 'SLY',     shape: 'ball', face: 'grin',    c1: '#9bbf2d', c2: '#7a18ff', glow: '#c2ff4d', trail: 'ember' },
+    { id: 'pixel-dino', name: 'REX',     shape: 'cube', face: 'angry',   c1: '#7a4dff', c2: '#2d6dff', glow: '#9b4dff', trail: 'pixel' }
   ];
 
   JD.getCharacter = function (id) {

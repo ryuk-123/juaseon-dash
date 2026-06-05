@@ -237,6 +237,7 @@
         JD.camera.x += 60 * dt;          // gentle parallax drift on menus
         JD.updateParticles(dt);
       }
+      JD.updateTrail(dt);
       JD.drawScene();
       requestAnimationFrame(frame);
     }
