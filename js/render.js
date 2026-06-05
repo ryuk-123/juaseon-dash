@@ -240,13 +240,13 @@
       } else if (o.t === 'spike') {
         JD.drawSpike(ctx, o.x - cam.x, o.baseY - cam.y, o.size, theme);
       } else if (o.t === 'orb') {
-        JD.drawOrb(ctx, o.cx - cam.x, o.cy - cam.y, o.r, clock);
+        JD.drawOrb(ctx, o.cx - cam.x, o.cy - cam.y, o.r, clock, o.kind);
       } else if (o.t === 'pad') {
         JD.drawPad(ctx, o.x - cam.x, o.baseY - cam.y, o.w);
       } else if (o.t === 'saw') {
         JD.drawSaw(ctx, o.cx - cam.x, o.cy - cam.y, o.r, clock);
       } else if (o.t === 'portal') {
-        JD.drawPortal(ctx, o.x - cam.x, 24, cfg.floorY - 24, o.kind);
+        JD.drawPortal(ctx, o.x - cam.x, 24, cfg.floorY - 24, o.kind, o.mult);
       }
     }
 

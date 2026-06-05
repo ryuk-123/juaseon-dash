@@ -16,7 +16,10 @@
       onGround: true,
       gravDir: 1,
       rotation: 0,
-      alive: true
+      alive: true,
+      speedMul: 1,        // speed-portal multiplier (1 = stage base speed)
+      mini: false,        // mini-mode portal (smaller icon + hitbox)
+      dashTimer: 0        // brief forward burst from a dash orb
     };
   };
 

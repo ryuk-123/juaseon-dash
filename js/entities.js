@@ -52,17 +52,30 @@
     return { x: x + (size - w) / 2, y: baseY - h, w: w, h: h };
   };
 
-  // Jump orb — pulsing ring; press jump while overlapping to bounce.
-  JD.drawOrb = function (ctx, cx, cy, r, t) {
+  // Orb — pulsing ring; press jump while overlapping to trigger.
+  // kind: jump=bounce(yellow) · grav=flip(blue) · dash=launch(green) · down=slam(purple)
+  var ORB_COLS = { jump: '#ffe34d', grav: '#2d9bff', dash: '#4dff5a', down: '#b14dff' };
+  var ORB_FILL = { jump: 'rgba(255,227,77,0.35)', grav: 'rgba(45,155,255,0.35)', dash: 'rgba(77,255,90,0.35)', down: 'rgba(177,77,255,0.35)' };
+  JD.drawOrb = function (ctx, cx, cy, r, t, kind) {
+    kind = kind || 'jump';
+    var col = ORB_COLS[kind] || ORB_COLS.jump;
     var pulse = 1 + Math.sin(t * 5) * 0.12;
     ctx.save();
-    ctx.shadowColor = '#ffe34d'; ctx.shadowBlur = 18;
+    ctx.shadowColor = col; ctx.shadowBlur = 18;
     ctx.lineWidth = r * 0.4;
-    ctx.strokeStyle = '#ffe34d';
+    ctx.strokeStyle = col;
     ctx.beginPath(); ctx.arc(cx, cy, r * pulse, 0, Math.PI * 2); ctx.stroke();
     ctx.shadowBlur = 0;
-    ctx.fillStyle = 'rgba(255,227,77,0.35)';
+    ctx.fillStyle = ORB_FILL[kind] || ORB_FILL.jump;
     ctx.beginPath(); ctx.arc(cx, cy, r * 0.5, 0, Math.PI * 2); ctx.fill();
+    // little glyph hint for non-jump orbs
+    if (kind !== 'jump') {
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = Math.max(1.5, r * 0.12); ctx.beginPath();
+      if (kind === 'grav') { ctx.moveTo(cx, cy - r * 0.32); ctx.lineTo(cx, cy + r * 0.32); ctx.moveTo(cx - r * 0.2, cy + r * 0.12); ctx.lineTo(cx, cy + r * 0.32); ctx.lineTo(cx + r * 0.2, cy + r * 0.12); }
+      else if (kind === 'dash') { ctx.moveTo(cx - r * 0.28, cy); ctx.lineTo(cx + r * 0.28, cy); ctx.moveTo(cx + r * 0.08, cy - r * 0.2); ctx.lineTo(cx + r * 0.28, cy); ctx.lineTo(cx + r * 0.08, cy + r * 0.2); }
+      else if (kind === 'down') { ctx.moveTo(cx, cy - r * 0.32); ctx.lineTo(cx, cy + r * 0.32); ctx.moveTo(cx - r * 0.2, cy + r * 0.12); ctx.lineTo(cx, cy + r * 0.32); ctx.lineTo(cx + r * 0.2, cy + r * 0.12); }
+      ctx.stroke();
+    }
     ctx.restore();
   };
 
@@ -103,10 +116,11 @@
     ctx.restore();
   };
 
-  // Mode portal — vertical neon gate. jet=pink, cube=cyan.
-  JD.drawPortal = function (ctx, x, topY, h, kind) {
-    var cols = { jet: '#ff3df0', cube: '#18e0ff', ball: '#4dff5a', gup: '#ff8a1e', gdown: '#2d9bff' };
+  // Mode portal — vertical neon gate. jet=pink, cube=cyan, etc.
+  JD.drawPortal = function (ctx, x, topY, h, kind, mult) {
+    var cols = { jet: '#ff3df0', cube: '#18e0ff', ball: '#4dff5a', gup: '#ff8a1e', gdown: '#2d9bff', mini: '#b6ff4d', big: '#ffd24d' };
     var col = cols[kind] || '#18e0ff';
+    if (kind === 'speed') col = (mult || 1) >= 1 ? '#ff8a1e' : '#2dd4ff';   // fast=orange, slow=cyan
     var w = 16;
     ctx.save();
     ctx.shadowColor = col; ctx.shadowBlur = 22;

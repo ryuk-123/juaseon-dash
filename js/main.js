@@ -33,6 +33,7 @@
     var overlayBtn = document.getElementById('overlay-btn');
     var overlayBtn2 = document.getElementById('overlay-btn2');
     var tapHint = document.getElementById('tap-hint');
+    var countdownEl = document.getElementById('countdown');
     var charGrid = document.getElementById('char-grid');
     var charNameEl = document.getElementById('char-name');
     var stageGrid = document.getElementById('stage-grid');
@@ -238,6 +239,13 @@
         JD.updateParticles(dt);
       }
       JD.updateTrail(dt);
+      // checkpoint countdown overlay
+      if (JD.screen === 'game' && JD.state === 'countdown') {
+        countdownEl.textContent = Math.max(1, Math.ceil(JD._countdown));
+        countdownEl.classList.remove('hidden');
+      } else if (!countdownEl.classList.contains('hidden')) {
+        countdownEl.classList.add('hidden');
+      }
       JD.drawScene();
       requestAnimationFrame(frame);
     }
