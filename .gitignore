@@ -1,0 +1,13 @@
+# Local dev / editor
+.claude/
+.vscode/
+.idea/
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Reference screenshots (not part of the shipped game)
+reference*.png
+reference*.jpg

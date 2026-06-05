@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>JUASEON DASH</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="game-wrap">
+    <canvas id="game" width="960" height="540"></canvas>
+
+    <!-- ===== TITLE SCREEN ===== -->
+    <div id="screen-title" class="screen">
+      <div class="title-inner">
+        <h1 class="logo"><span>JUASEON</span><br><em>DASH</em></h1>
+        <p class="tagline">tap the rhythm · beat the stage</p>
+        <button id="start-btn" class="btn big">PRESS ENTER</button>
+        <div class="controls-hint">
+          <span><b>Space</b> / <b>↑</b> / <b>Click</b> — Jump</span>
+          <span><b>Enter</b> — Select</span>
+          <span><b>Esc</b> — Pause</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== CHARACTER SELECT ===== -->
+    <div id="screen-select" class="screen hidden">
+      <h2 class="screen-h">CHOOSE YOUR ICON</h2>
+      <div id="char-grid" class="char-grid"></div>
+      <div class="select-bar">
+        <span id="char-name" class="char-name">BYTE</span>
+        <button id="confirm-char" class="btn">CONFIRM ▶</button>
+      </div>
+      <button id="back-title" class="btn ghost small">◀ BACK</button>
+    </div>
+
+    <!-- ===== STAGE SELECT ===== -->
+    <div id="screen-stages" class="screen hidden">
+      <h2 class="screen-h">SELECT STAGE</h2>
+      <div id="stage-grid" class="stage-grid"></div>
+      <button id="back-select" class="btn ghost small">◀ CHANGE ICON</button>
+    </div>
+
+    <!-- ===== IN-GAME HUD ===== -->
+    <div id="hud" class="hud hidden">
+      <div id="progress-track"><div id="progress-fill"></div></div>
+      <div id="progress-pct">0%</div>
+      <div id="attempt">Attempt 1</div>
+    </div>
+
+    <!-- ===== Death / win / pause overlay ===== -->
+    <div id="overlay" class="overlay hidden">
+      <div class="overlay-card">
+        <h2 id="overlay-title">LEVEL COMPLETE</h2>
+        <p id="overlay-sub">100%</p>
+        <div class="overlay-btns">
+          <button id="overlay-btn" class="btn">RETRY</button>
+          <button id="overlay-btn2" class="btn ghost hidden">MENU</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="tap-hint" class="tap-hint hidden">PRESS SPACE / TAP TO JUMP</div>
+
+    <button id="mute-btn" class="mute-btn" title="Mute (M)">🔊</button>
+  </div>
+
+  <script src="js/audio.js"></script>
+  <script src="js/characters.js"></script>
+  <script src="js/entities.js"></script>
+  <script src="js/levels.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
