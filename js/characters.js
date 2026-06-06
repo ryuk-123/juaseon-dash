@@ -16,7 +16,8 @@
     { id: 'blue-gear',  name: 'COG',     shape: 'ball', face: 'eye',     c1: '#2d6dff', c2: '#1a2d8a', glow: '#3d8aff', trail: 'streak' },
     { id: 'blue-teeth', name: 'FROST',   shape: 'ball', face: 'angry',   c1: '#19e6ff', c2: '#1466c9', glow: '#18e0ff', trail: 'frost' },
     { id: 'bandit',     name: 'SLY',     shape: 'ball', face: 'grin',    c1: '#9bbf2d', c2: '#7a18ff', glow: '#c2ff4d', trail: 'ember' },
-    { id: 'pixel-dino', name: 'REX',     shape: 'cube', face: 'angry',   c1: '#7a4dff', c2: '#2d6dff', glow: '#9b4dff', trail: 'pixel' }
+    { id: 'pixel-dino', name: 'REX',     shape: 'cube', face: 'angry',   c1: '#7a4dff', c2: '#2d6dff', glow: '#9b4dff', trail: 'pixel' },
+    { id: 'red-lee',    name: 'RED LEE', shape: 'cube', face: 'panda',   c1: '#cf5e2f', c2: '#8f3a1c', glow: '#ff9a4d', trail: 'heart' }
   ];
 
   JD.getCharacter = function (id) {
@@ -147,6 +148,64 @@
       // small fang
       ctx.fillStyle = '#fff';
       ctx.beginPath(); ctx.moveTo(-s * 0.05, s * 0.22); ctx.lineTo(s * 0.02, s * 0.22); ctx.lineTo(-s * 0.015, s * 0.3); ctx.closePath(); ctx.fill();
+    } else if (style === 'panda') {
+      // ----- cute red panda (Red Lee) -----
+      var cream = '#f6ead2', dark = '#241410', white = '#fbf4e6';
+      // pointy ears (cream outer, dark inner), poking above the head
+      function ear(side) {
+        ctx.fillStyle = cream;
+        ctx.beginPath();
+        ctx.moveTo(side * s * 0.18, -s * 0.40);
+        ctx.lineTo(side * s * 0.34, -s * 0.72);
+        ctx.lineTo(side * s * 0.46, -s * 0.40);
+        ctx.closePath(); ctx.fill();
+        ctx.fillStyle = dark;
+        ctx.beginPath();
+        ctx.moveTo(side * s * 0.26, -s * 0.42);
+        ctx.lineTo(side * s * 0.34, -s * 0.62);
+        ctx.lineTo(side * s * 0.40, -s * 0.42);
+        ctx.closePath(); ctx.fill();
+      }
+      ear(-1); ear(1);
+      // darker forehead stripes (red-panda markings)
+      ctx.strokeStyle = 'rgba(90,30,15,0.55)'; ctx.lineWidth = s * 0.05; ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(-s * 0.10, -s * 0.42); ctx.lineTo(-s * 0.07, -s * 0.18);
+      ctx.moveTo(s * 0.10, -s * 0.42); ctx.lineTo(s * 0.07, -s * 0.18);
+      ctx.stroke();
+      // white muzzle + cheeks
+      ctx.fillStyle = white;
+      ctx.beginPath(); ctx.ellipse(-s * 0.20, s * 0.16, s * 0.22, s * 0.20, 0, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.ellipse(s * 0.20, s * 0.16, s * 0.22, s * 0.20, 0, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.ellipse(0, s * 0.04, s * 0.16, s * 0.27, 0, 0, 6.283); ctx.fill();
+      // cream eyebrow patches
+      ctx.fillStyle = cream;
+      ctx.beginPath(); ctx.ellipse(-s * 0.22, -s * 0.15, s * 0.11, s * 0.08, 0, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.ellipse(s * 0.22, -s * 0.15, s * 0.11, s * 0.08, 0, 0, 6.283); ctx.fill();
+      // big sparkly eyes
+      var ey = -s * 0.02, edx = s * 0.21, er = s * 0.12;
+      ctx.fillStyle = dark;
+      ctx.beginPath(); ctx.arc(-edx, ey, er, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.arc(edx, ey, er, 0, 6.283); ctx.fill();
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath(); ctx.arc(-edx - er * 0.3, ey - er * 0.35, er * 0.42, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.arc(edx - er * 0.3, ey - er * 0.35, er * 0.42, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.arc(-edx + er * 0.38, ey + er * 0.32, er * 0.2, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.arc(edx + er * 0.38, ey + er * 0.32, er * 0.2, 0, 6.283); ctx.fill();
+      // nose
+      ctx.fillStyle = dark;
+      ctx.beginPath();
+      ctx.moveTo(-s * 0.07, s * 0.10); ctx.lineTo(s * 0.07, s * 0.10);
+      ctx.quadraticCurveTo(s * 0.07, s * 0.17, 0, s * 0.19);
+      ctx.quadraticCurveTo(-s * 0.07, s * 0.17, -s * 0.07, s * 0.10);
+      ctx.closePath(); ctx.fill();
+      // smile
+      ctx.strokeStyle = dark; ctx.lineWidth = s * 0.028; ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(0, s * 0.19); ctx.lineTo(0, s * 0.24);
+      ctx.moveTo(0, s * 0.24); ctx.quadraticCurveTo(-s * 0.09, s * 0.31, -s * 0.14, s * 0.24);
+      ctx.moveTo(0, s * 0.24); ctx.quadraticCurveTo(s * 0.09, s * 0.31, s * 0.14, s * 0.24);
+      ctx.stroke();
     }
     ctx.restore();
   }

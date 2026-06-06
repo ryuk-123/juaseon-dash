@@ -38,7 +38,7 @@ js/main.js        screen-flow state machine, input, persistence, audio wiring, R
 - **Per-stage speed ramp**: `JD.LEVELS[i].speed` (360 → 505 over stages 1→15), set into `JD.config.speed` in `startStage`. Stages 16-20 planned up to ~540.
 - **Modes**: cube (tap jump) · jetpack (hold thrust) · ball (tap flip gravity). Mode + gravity-flip portals.
 - **Mechanics**: jump orbs, jump pads, saw blades, instant-death spikes/sides, instant restart, progress % + attempt counter, win screen, stage unlock + best% in localStorage.
-- **11 characters** (canvas-drawn neon): cube/ball shapes, distinct faces. Default per theme but user choice persists.
+- **12 characters** (canvas-drawn neon): cube/ball shapes, distinct faces. Default per theme but user choice persists. Newest = **RED LEE**, a cute red-panda cube (`face:'panda'`) with a pink/yellow/red/sky-blue **heart trail**.
 - **Controls (GD-style)**: Jump/thrust/flip = Space/↑/W/Click/Tap · Start/confirm = Enter · Pause/back = Esc · Menu nav = ←/→ · Mute = M or 🔊 button.
 
 ## Recent additions (post-milestones)
@@ -59,7 +59,7 @@ js/main.js        screen-flow state machine, input, persistence, audio wiring, R
   - **Melody-first** (user feedback: first pass was "beat-like/bland"): each stage's `lead` in `L.*` is a catchy, continuous motif-based hook (call/response, 21-44 notes per 4-bar loop). Warm `_lead` voice (detuned saws+triangle+sub octave+vibrato → pump/reverb/delay) carries it up-front at vol ~0.24-0.27; stabs/hats pulled back to support. `_noteLen` makes notes legato to the next note. **The melodies/mix are the main thing to iterate on by ear.**
   - NOTE: music quality is tuned BY EAR with the user — Claude can verify it plays error-free but cannot hear it.
 - **Asset cache-busting**: `index.html` script/css tags carry `?v=N` (currently `v=2`). **BUMP this number whenever you change any `js/*.js` or `css/style.css`** so the browser (and GitHub Pages users) fetch fresh files — this is what fixes the old "hard-refresh to get new code" pain. Preview MCP also caches: a normal `location.reload()` may reuse old JS, so to verify edits either bump `?v=` or do `preview_stop`+`preview_start` for a clean browser context.
-- **Per-character movement trails** (commit d5c5969): each char has a `trail` key. `render.js` TRAILS config + emitTrail/updateTrail/drawTrail. Styles: BYTE=spark, BLAZE=fire+smoke, CHOMP=toxic, VOID=plasma, GNARL=star, FIZZ=bubble, PEEK=rainbow, COG=streak, FROST=frost, SLY=ember, REX=pixel. Emitted behind player in all modes; cleared on restart.
+- **Per-character movement trails** (commit d5c5969): each char has a `trail` key. `render.js` TRAILS config + emitTrail/updateTrail/drawTrail. Styles: BYTE=spark, BLAZE=fire+smoke, CHOMP=toxic, VOID=plasma, GNARL=star, FIZZ=bubble, PEEK=rainbow, COG=streak, FROST=frost, SLY=ember, REX=pixel, RED LEE=heart (floating pink/yellow/red/sky-blue glowing hearts; `drawHeart` in render.js). Emitted behind player in all modes; cleared on restart.
 
 ## Git / GitHub state (as of last session)
 - User (ryuk-123) is a Git beginner — walk through commands step by step; they run pushes themselves in their own PowerShell.

@@ -33,7 +33,8 @@
     streak:  { shape: 'streak', cols: ['#3d8aff', '#18e0ff', '#7a18ff'], size: [12, 26],life: [0.16, 0.34], spd: 30,  grav: 0,    add: true,  rate: 130 },
     frost:   { shape: 'shard',  cols: ['#bfeaff', '#5cf0ff', '#ffffff'], size: [3, 7],  life: [0.4, 0.8],   spd: 70,  grav: 320,  add: true,  rate: 60, twinkle: true },
     ember:   { shape: 'glow',   cols: ['#ffb84d', '#ff6a2d', '#ffe34d'], size: [2, 6],  life: [0.4, 0.9],   spd: 45,  grav: -210, add: true,  rate: 75, flick: true },
-    pixel:   { shape: 'pixel',  cols: ['#7a4dff', '#2d6dff', '#9b4dff'], size: [4, 9],  life: [0.5, 0.9],   spd: 70,  grav: 520,  add: false, rate: 44 }
+    pixel:   { shape: 'pixel',  cols: ['#7a4dff', '#2d6dff', '#9b4dff'], size: [4, 9],  life: [0.5, 0.9],   spd: 70,  grav: 520,  add: false, rate: 44 },
+    heart:   { shape: 'heart',  cols: ['#ff8ad0', '#ffe34d', '#ff4d6a', '#5cc8ff'],    size: [5, 11], life: [0.55, 1.1], spd: 46, grav: -150, add: true,  rate: 40, twinkle: true }
   };
 
   function rnd(a, b) { return a + Math.random() * (b - a); }
@@ -116,10 +117,20 @@
         ctx.beginPath(); ctx.moveTo(sx, sy - sz); ctx.lineTo(sx + sz * 0.6, sy); ctx.lineTo(sx, sy + sz); ctx.lineTo(sx - sz * 0.6, sy); ctx.closePath(); ctx.fill();
       } else if (p.shape === 'star') {
         drawStar(ctx, sx, sy, sz);
+      } else if (p.shape === 'heart') {
+        drawHeart(ctx, sx, sy, sz);
       }
       ctx.restore();
     }
   };
+
+  function drawHeart(ctx, x, y, s) {
+    ctx.beginPath();
+    ctx.moveTo(x, y + s * 0.35);
+    ctx.bezierCurveTo(x - s, y - s * 0.55, x - s * 0.45, y - s, x, y - s * 0.35);
+    ctx.bezierCurveTo(x + s * 0.45, y - s, x + s, y - s * 0.55, x, y + s * 0.35);
+    ctx.closePath(); ctx.fill();
+  }
 
   function drawStar(ctx, x, y, r) {
     ctx.beginPath();
