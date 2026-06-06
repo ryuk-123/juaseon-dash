@@ -17,7 +17,7 @@
     { id: 'blue-teeth', name: 'FROST',   shape: 'ball', face: 'angry',   c1: '#19e6ff', c2: '#1466c9', glow: '#18e0ff', trail: 'frost' },
     { id: 'bandit',     name: 'SLY',     shape: 'ball', face: 'grin',    c1: '#9bbf2d', c2: '#7a18ff', glow: '#c2ff4d', trail: 'ember' },
     { id: 'pixel-dino', name: 'REX',     shape: 'cube', face: 'angry',   c1: '#7a4dff', c2: '#2d6dff', glow: '#9b4dff', trail: 'pixel' },
-    { id: 'red-lee',    name: 'RED LEE', shape: 'cube', face: 'panda',   c1: '#cf5e2f', c2: '#8f3a1c', glow: '#ff9a4d', trail: 'heart' }
+    { id: 'red-lee',    name: 'RED LEE', shape: 'cube', face: 'panda',   c1: '#7c43d6', c2: '#3f63d6', glow: '#9b6dff', trail: 'heart' }
   ];
 
   JD.getCharacter = function (id) {
@@ -149,80 +149,70 @@
       ctx.fillStyle = '#fff';
       ctx.beginPath(); ctx.moveTo(-s * 0.05, s * 0.22); ctx.lineTo(s * 0.02, s * 0.22); ctx.lineTo(-s * 0.015, s * 0.3); ctx.closePath(); ctx.fill();
     } else if (style === 'panda') {
-      // ----- cute red panda (Red Lee), modeled on the RED PANDA PAL reference -----
-      var cream = '#f7ecd6', white = '#fdf7ec', dark = '#23120c';
-      var tLight = '#c75f33', tDark = '#6e2c16', tTip = '#43190d', tEdge = '#3a1810';
+      // ----- Red Lee: deep-red panda head on the purple/blue tile -----
+      var cream = '#f3e6cf', white = '#f7eedd', ink = '#1c0e14';
+      var headTop = '#cf3f36', headBot = '#7e1d26', earRed = '#bf3330', earDark = '#1c0b14';
 
-      // ---- big fluffy striped tail, curling from lower-right (drawn first, behind face) ----
-      var tail = [
-        [0.24, 0.42, 0.19, tDark], [0.39, 0.51, 0.185, tLight], [0.52, 0.52, 0.17, tDark],
-        [0.62, 0.44, 0.155, tLight], [0.66, 0.31, 0.14, tDark], [0.63, 0.18, 0.125, tLight],
-        [0.55, 0.09, 0.105, tTip]
-      ];
-      for (var ti = 0; ti < tail.length; ti++) {
-        var tg = tail[ti];
-        ctx.fillStyle = tEdge;
-        ctx.beginPath(); ctx.arc(tg[0] * s, tg[1] * s, tg[2] * s + s * 0.012, 0, 6.283); ctx.fill();
-        ctx.fillStyle = tg[3];
-        ctx.beginPath(); ctx.arc(tg[0] * s, tg[1] * s, tg[2] * s, 0, 6.283); ctx.fill();
-      }
-
-      var rust = '#b85228';
-
-      // ---- soft rounded ears: cream fluff outer + rust inner ----
+      // pointed ears (red outer + black inner), drawn under the head so they poke above it
       var rpEar = function (side) {
-        ctx.fillStyle = cream;
+        ctx.fillStyle = earRed;
         ctx.beginPath();
-        ctx.moveTo(side * 0.14 * s, -0.40 * s);
-        ctx.quadraticCurveTo(side * 0.24 * s, -0.70 * s, side * 0.42 * s, -0.62 * s);
-        ctx.quadraticCurveTo(side * 0.56 * s, -0.54 * s, side * 0.48 * s, -0.34 * s);
+        ctx.moveTo(side * 0.10 * s, -0.40 * s);
+        ctx.quadraticCurveTo(side * 0.22 * s, -0.66 * s, side * 0.40 * s, -0.58 * s);
+        ctx.quadraticCurveTo(side * 0.50 * s, -0.52 * s, side * 0.46 * s, -0.34 * s);
         ctx.closePath(); ctx.fill();
-        ctx.fillStyle = rust;
+        ctx.fillStyle = earDark;
         ctx.beginPath();
-        ctx.moveTo(side * 0.23 * s, -0.40 * s);
-        ctx.quadraticCurveTo(side * 0.30 * s, -0.60 * s, side * 0.42 * s, -0.54 * s);
-        ctx.quadraticCurveTo(side * 0.49 * s, -0.49 * s, side * 0.44 * s, -0.37 * s);
+        ctx.moveTo(side * 0.20 * s, -0.40 * s);
+        ctx.quadraticCurveTo(side * 0.29 * s, -0.58 * s, side * 0.40 * s, -0.52 * s);
+        ctx.quadraticCurveTo(side * 0.45 * s, -0.48 * s, side * 0.42 * s, -0.36 * s);
         ctx.closePath(); ctx.fill();
       };
       rpEar(-1); rpEar(1);
 
-      // ---- soft white face mask: round cheeks + muzzle blaze (forehead stays red) ----
+      // deep-red rounded head, inset so the purple/blue tile shows at the corners
+      var hg = ctx.createLinearGradient(0, -0.40 * s, 0, 0.46 * s);
+      hg.addColorStop(0, headTop); hg.addColorStop(1, headBot);
+      roundRect(ctx, -0.43 * s, -0.40 * s, 0.86 * s, 0.86 * s, 0.28 * s);
+      ctx.fillStyle = hg; ctx.fill();
+      ctx.lineWidth = s * 0.02; ctx.strokeStyle = '#5e1620'; ctx.stroke();
+
+      // cream eyebrow dots
+      ctx.fillStyle = cream;
+      ctx.beginPath(); ctx.ellipse(-0.17 * s, -0.20 * s, 0.085 * s, 0.072 * s, 0, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.ellipse(0.17 * s, -0.20 * s, 0.085 * s, 0.072 * s, 0, 0, 6.283); ctx.fill();
+
+      // white muzzle around the nose + mouth
       ctx.fillStyle = white;
-      ctx.beginPath(); ctx.ellipse(-0.18 * s, 0.23 * s, 0.20 * s, 0.18 * s, 0, 0, 6.283); ctx.fill();
-      ctx.beginPath(); ctx.ellipse(0.18 * s, 0.23 * s, 0.20 * s, 0.18 * s, 0, 0, 6.283); ctx.fill();
-      ctx.beginPath(); ctx.ellipse(0, 0.16 * s, 0.135 * s, 0.20 * s, 0, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.ellipse(-0.10 * s, 0.28 * s, 0.125 * s, 0.115 * s, 0, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.ellipse(0.10 * s, 0.28 * s, 0.125 * s, 0.115 * s, 0, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.ellipse(0, 0.21 * s, 0.105 * s, 0.16 * s, 0, 0, 6.283); ctx.fill();
 
-      // ---- white eyebrow dots ----
-      ctx.fillStyle = white;
-      ctx.beginPath(); ctx.ellipse(-0.19 * s, -0.24 * s, 0.085 * s, 0.10 * s, 0, 0, 6.283); ctx.fill();
-      ctx.beginPath(); ctx.ellipse(0.19 * s, -0.24 * s, 0.085 * s, 0.10 * s, 0, 0, 6.283); ctx.fill();
-
-      // ---- soft pink blush (kawaii) ----
-      ctx.fillStyle = 'rgba(255,148,138,0.5)';
-      ctx.beginPath(); ctx.ellipse(-0.285 * s, 0.18 * s, 0.06 * s, 0.045 * s, 0, 0, 6.283); ctx.fill();
-      ctx.beginPath(); ctx.ellipse(0.285 * s, 0.18 * s, 0.06 * s, 0.045 * s, 0, 0, 6.283); ctx.fill();
-
-      // ---- big friendly round eyes (simple + shiny = cute) ----
-      var ey = 0.0 * s, edx = 0.18 * s, er = 0.14 * s;
-      ctx.fillStyle = dark;
+      // big cute eyes (black + sparkles)
+      var ey = 0.01 * s, edx = 0.17 * s, er = 0.135 * s;
+      ctx.fillStyle = ink;
       ctx.beginPath(); ctx.arc(-edx, ey, er, 0, 6.283); ctx.fill();
       ctx.beginPath(); ctx.arc(edx, ey, er, 0, 6.283); ctx.fill();
       ctx.fillStyle = '#ffffff';
-      ctx.beginPath(); ctx.arc(-edx - er * 0.26, ey - er * 0.30, er * 0.44, 0, 6.283); ctx.fill();
-      ctx.beginPath(); ctx.arc(edx - er * 0.26, ey - er * 0.30, er * 0.44, 0, 6.283); ctx.fill();
-      ctx.beginPath(); ctx.arc(-edx + er * 0.34, ey + er * 0.30, er * 0.18, 0, 6.283); ctx.fill();
-      ctx.beginPath(); ctx.arc(edx + er * 0.34, ey + er * 0.30, er * 0.18, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.arc(-edx - er * 0.26, ey - er * 0.32, er * 0.42, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.arc(edx - er * 0.26, ey - er * 0.32, er * 0.42, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.arc(-edx + er * 0.34, ey + er * 0.30, er * 0.16, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.arc(edx + er * 0.34, ey + er * 0.30, er * 0.16, 0, 6.283); ctx.fill();
 
-      // ---- small rounded nose ----
-      ctx.fillStyle = dark;
-      ctx.beginPath(); ctx.ellipse(0, 0.135 * s, 0.058 * s, 0.046 * s, 0, 0, 6.283); ctx.fill();
+      // nose
+      ctx.fillStyle = ink;
+      ctx.beginPath(); ctx.ellipse(0, 0.165 * s, 0.052 * s, 0.042 * s, 0, 0, 6.283); ctx.fill();
 
-      // ---- tiny gentle smile ----
-      ctx.strokeStyle = dark; ctx.lineWidth = s * 0.024; ctx.lineCap = 'round';
+      // mouth + little fang
+      ctx.strokeStyle = ink; ctx.lineWidth = s * 0.022; ctx.lineCap = 'round';
       ctx.beginPath();
-      ctx.moveTo(0, 0.18 * s); ctx.lineTo(0, 0.205 * s);
-      ctx.moveTo(-0.075 * s, 0.215 * s); ctx.quadraticCurveTo(0, 0.27 * s, 0.075 * s, 0.215 * s);
+      ctx.moveTo(0, 0.205 * s); ctx.lineTo(0, 0.235 * s);
+      ctx.moveTo(-0.06 * s, 0.245 * s); ctx.quadraticCurveTo(0, 0.285 * s, 0.06 * s, 0.245 * s);
       ctx.stroke();
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.moveTo(-0.028 * s, 0.252 * s); ctx.lineTo(0.028 * s, 0.252 * s); ctx.lineTo(0, 0.305 * s);
+      ctx.closePath(); ctx.fill();
     }
     ctx.restore();
   }
