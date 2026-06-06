@@ -35,13 +35,17 @@ js/main.js        screen-flow state machine, input, persistence, audio wiring, R
 
 ## Gameplay status
 - **8 stages (expanding to 20 — see roadmap below).** 1 NEON RUSH · 2 JETSTREAM CAVE · 3 CHAOS CIRCUIT (original trilogy) · **4 SUNSET SPRINT · 5 VAPOR DRIFT · 6 MINI MIRAGE** (Sunset world, THEME_SUNSET) · **7 GLITCH GATE · 8 SYSTEM SHOCK** (Glitch world, THEME_GLITCH).
-- **Per-stage speed ramp**: `JD.LEVELS[i].speed` (360 → 505 over stages 1→15), set into `JD.config.speed` in `startStage`. Stages 16-20 planned up to ~540.
+- **Per-stage speed ramp**: `JD.LEVELS[i].speed` (360 → 540 over stages 1→20), set into `JD.config.speed` in `startStage`. **All 20 stages now authored.**
 - **Modes**: cube (tap jump) · jetpack (hold thrust) · ball (tap flip gravity). Mode + gravity-flip portals.
 - **Mechanics**: jump orbs, jump pads, saw blades, instant-death spikes/sides, instant restart, progress % + attempt counter, win screen, stage unlock + best% in localStorage.
 - **12 characters** (canvas-drawn neon): cube/ball shapes, distinct faces. Default per theme but user choice persists. Newest = **RED LEE**, a cute red-panda cube (`face:'panda'`) with a pink/yellow/red/sky-blue **heart trail**.
 - **Controls (GD-style)**: Jump/thrust/flip = Space/↑/W/Click/Tap · Start/confirm = Enter · Pause/back = Esc · Menu nav = ←/→ · Mute = M or 🔊 button.
 
 ## Recent additions (post-milestones)
+- **Stages 16-20 (campaign complete) + RED LEE character** — this session (2026-06-05).
+  - **Final 5 stages** (`levels.js`): **16 MAGMA RUN · 17 CORE MELT · 18 OVERDRIVE** (Inferno) · **19 SINGULARITY · 20 JUASEON ZERO** (new **THEME_VOID** — cosmic purple/magenta/cyan). Speeds 515→540; 20 is a ~266-tile boss-length finale remixing every toy. All 20 stages authored. New tracks `s15…s19` (Inferno=eurodance/big-room `euro5-7`; finale=epic future-bass `fut8` + heavy dubstep boss `dub5`).
+  - **RED LEE** — a cute red-panda **cube** character (`face:'panda'` in `characters.js`): big rounded cream/dark ears, white teardrop eyebrow markings, **muzzle-only white** around nose/mouth (cheeks stay red — iterated twice on user feedback), big glossy two-tone eyes with sparkles, darker-red forehead squiggle, and a fluffy **striped curling tail** (rotates with the cube). Trail = new **`heart`** style (pink/yellow/red/sky-blue floating glowing hearts; `drawHeart` in render.js).
+  - **REMAINING**: human playtest/difficulty tuning of stages 4-20 (esp. fast lanes / jetpack saw-walls / gravity-chaos), and tune all the new music by ear. Campaign content is feature-complete.
 - **Stages 9-15 + checkpoint gate + party-music pass** — this session (2026-06-05). All additive, no engine API changes.
   - **7 new stages** (`levels.js`): **9 DATA STORM · 10 FIREWALL** (Glitch world, THEME_GLITCH) · **11 AURORA ASCENT · 12 FROST BYTE · 13 POLAR PULSE · 14 WHITEOUT** (new **THEME_AURORA** — glacial ice-blue/violet) · **15 EMBER GATE** (new **THEME_INFERNO** — magma red/orange). Speeds 460→505. Each stage features its roadmap toy (dual-speed, dash chains, grav-orb chains, mini+jetpack tunnels, timed moving saws, speed swings, black-orb slams). **Still need a human playtest pass for spacing/difficulty fine-tuning — bots can't dodge-test.**
   - **Checkpoint now gated to the 6th attempt** (user request): `engine.js` adds `JD.stageFails` (reset in `startStage`) + `JD.CHECKPOINT_AFTER=5`. Deaths 1-5 on a stage → full restart from start; from the 6th death on (and still only stage `id>=3`, past 50%) → mid-checkpoint respawn. Verified via eval loop.
@@ -70,9 +74,9 @@ js/main.js        screen-flow state machine, input, persistence, audio wiring, R
 - Common beginner confusion: the repo page = code; `ryuk-123.github.io/juaseon-dash/` = playable game. After a push, Pages rebuilds ~1-2 min; tell them to **hard-refresh (Ctrl+Shift+R)** to bust browser cache of old .js.
 
 ## Likely next ideas (not yet done)
-- **Author stages 16-20** (names/themes/featured-toys locked in the plan file; layouts TBD). Inferno world continues (16-18, THEME_INFERNO exists); Finale 19-20 still needs new palette **THEME_VOID**.
-- **Human playtest + difficulty tuning of stages 4-15** — spacing of moving saws / mini corridors / grav-dash chains / speed swings. Layouts use the proven STAGE2/3/8 spacing envelope but are bot-untested.
-- **Tune the new music (s8-s14) by ear** — adjust hooks (`L.fut4-7`, `L.euro4`, `L.dub3-4`), roots, bpm, or the global energy-lift constants in `audio.js` to taste.
+- **Human playtest + difficulty tuning of stages 4-20** — spacing of moving saws / mini corridors / grav-dash chains / speed swings / jetpack saw-walls / gravity-chaos. Layouts use the proven STAGE2/3/8 spacing envelope but are bot-untested.
+- **Tune all new music by ear** — adjust hooks (`L.fut4-8`, `L.euro4-7`, `L.dub3-5`), roots, bpm, or the global energy-lift constants in `audio.js` to taste.
+- Campaign is feature-complete at 20 stages; possible polish: per-world stage-select labels, intro buildup-then-drop, mobile polish, more characters.
 - Stage-select polish: card BEST% line is slightly clipped at 8 cards; consider per-world section labels.
 - Grav-orb glyph reads as a single down-arrow — a double-headed (↕) arrow would signal "flip" more clearly.
 - Trail tuning, per-world music character (darker glitch / hyperpop), buildup-then-drop intro, mobile polish.

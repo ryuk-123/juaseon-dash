@@ -87,7 +87,7 @@
     player: 'blue-teeth'
   };
 
-  // Inferno / magma theme (World 5, stage 15+): deep-red sky, ember blocks, white-hot spikes
+  // Inferno / magma theme (World 5, stages 15-18): deep-red sky, ember blocks, white-hot spikes
   var THEME_INFERNO = {
     name: 'inferno',
     sky0: '#5e1206', sky1: '#2a0604',
@@ -97,6 +97,18 @@
     blockTop: '#ffd24d', blockBottom: '#ff3d1a', blockGlow: '#ff8a1e',
     spikeTop: '#fff0a6', spikeBottom: '#ff5a1a', spikeGlow: '#ffce4d',
     player: 'red-fang'
+  };
+
+  // Void / cosmic theme (Finale, stages 19-20): deep-space purple/black, electric magenta + cyan
+  var THEME_VOID = {
+    name: 'void',
+    sky0: '#1a0833', sky1: '#05010f',
+    grid: 'rgba(180, 120, 255, 0.12)',
+    ground0: '#140828', ground1: '#03010c',
+    floorLine: '#c84dff',
+    blockTop: '#e0a6ff', blockBottom: '#6a2dff', blockGlow: '#b84dff',
+    spikeTop: '#5cf0ff', spikeBottom: '#2d6dff', spikeGlow: '#3df0ff',
+    player: 'purple-mon'
   };
 
   // ---- Stage 1: cube tutorial ----
@@ -513,6 +525,167 @@
     S(166)
   ];
 
+  // ---- Stage 16: MAGMA RUN — fast lanes + jetpack saw-wall gauntlet (Inferno) ----
+  var STAGE16 = [
+    S(11),
+    SP(17, 1.35),              // fast lane
+    S(26),
+    S(34),
+    O(41, 2), S(40), S(42),
+    S(49),
+    SP(55, 0.7),               // brake
+    S(61), S(62),
+    SAW(68, 1, { ax: 'v', amp: 1.3, spd: 3 }),
+    S(74),
+    SP(80, 1.0),
+    P(86, 'jet'),              // saw-wall gauntlet (thread the mid gap)
+    B(92, 0), B(92, 1), B(92, 7), B(92, 8),
+    SAW(99, 4, { ax: 'v', amp: 1.5, spd: 2.4 }),
+    B(105, 0), B(105, 1), B(105, 7), B(105, 8),
+    SAW(112, 4, { ax: 'v', amp: 1.5, spd: 2.6 }),
+    B(118, 0), B(118, 1), B(118, 7), B(118, 8),
+    P(125, 'cube'),
+    SP(131, 1.4),              // fast finish
+    O(138, 2, 'dash'),
+    S(146), S(147),
+    PAD(153),
+    S(160), S(161),
+    S(167)
+  ];
+
+  // ---- Stage 17: CORE MELT — every toy, tight transitions (Inferno) ----
+  var STAGE17 = [
+    S(11),
+    O(17, 2, 'dash'),
+    S(24), S(25),
+    P(31, 'ball'),
+    SAW(38, 1),
+    SAW(45, 8),
+    O(51, 5, 'grav'),
+    SAW(57, 1),
+    P(63, 'cube'),
+    O(69, 2, 'down'),
+    S(76),
+    SP(82, 1.3),
+    S(90), S(91),
+    P(97, 'mini'),
+    S(103),
+    S(109), S(110),
+    SAW(116, 1),
+    P(122, 'big'),
+    P(128, 'jet'),
+    SAW(135, 4, { ax: 'v', amp: 2, spd: 2.4 }),
+    B(142, 0), B(142, 1),
+    SAW(148, 5, { ax: 'v', amp: 2, spd: 2 }),
+    P(155, 'cube'),
+    O(161, 2, 'dash'),
+    S(168), S(169),
+    PAD(175),
+    S(182), S(183),
+    S(189)
+  ];
+
+  // ---- Stage 18: OVERDRIVE — max-speed cube (Inferno) ----
+  var STAGE18 = [
+    S(12),
+    SP(18, 1.5),               // max speed
+    S(28),
+    S(37),
+    O(45, 2), S(44), S(46),
+    S(54),
+    S(62), S(63),
+    PAD(70),
+    S(78),
+    SP(85, 1.6),               // even faster
+    S(95),
+    S(104),
+    O(112, 2, 'dash'),
+    S(121), S(122),
+    SP(129, 1.0),              // brief brake on a tight beat
+    S(135), S(136),
+    SAW(142, 1),
+    S(148),
+    SP(154, 1.5),
+    S(163),
+    O(170, 2), S(169), S(171),
+    PAD(177),
+    S(184), S(185),
+    S(191)
+  ];
+
+  // ---- Stage 19: SINGULARITY — gravity chaos (Finale, THEME_VOID) ----
+  var STAGE19 = [
+    S(11),
+    O(17, 2, 'grav'),          // flip up
+    SAW(24, 1),
+    O(30, 6, 'grav'),          // flip down
+    S(37),
+    P(43, 'ball'),             // ball: tap-flip chaos over alternating saws
+    SAW(50, 1),
+    SAW(57, 8),
+    SAW(64, 1),
+    SAW(71, 8),
+    SAW(78, 1),
+    O(84, 5, 'grav'),
+    SAW(90, 8),
+    P(96, 'cube'),
+    O(102, 2, 'grav'),
+    SAW(108, 1),
+    SAW(114, 1),
+    O(120, 6, 'grav'),
+    S(127),
+    P(133, 'jet'),
+    SAW(140, 4, { ax: 'v', amp: 2.5, spd: 2.4 }),
+    B(147, 0), B(147, 1),
+    SAW(153, 5, { ax: 'v', amp: 2.5, spd: 2.2 }),
+    P(160, 'cube'),
+    PAD(166),
+    S(173), S(174),
+    S(180)
+  ];
+
+  // ---- Stage 20: JUASEON ZERO — every toy, boss-length finale (Finale) ----
+  var STAGE20 = [
+    S(11),
+    O(17, 2, 'dash'),
+    S(24), S(25),
+    SP(31, 1.4),
+    S(40),
+    O(47, 2), S(46), S(48),
+    SP(54, 0.7),
+    SAW(60, 1, { ax: 'v', amp: 1.3, spd: 3 }),
+    S(66), S(67),
+    P(73, 'ball'),
+    SAW(80, 1),
+    SAW(87, 8),
+    O(93, 5, 'grav'),
+    SAW(99, 1),
+    P(105, 'cube'),
+    O(111, 2, 'grav'),
+    SAW(117, 1),
+    O(123, 6, 'grav'),
+    S(130),
+    P(136, 'mini'),
+    S(142),
+    S(148), S(149),
+    SAW(155, 1),
+    P(161, 'big'),
+    P(167, 'jet'),
+    B(173, 0), B(173, 1), B(173, 7), B(173, 8),
+    SAW(180, 4, { ax: 'v', amp: 1.5, spd: 2.5 }),
+    B(187, 0), B(187, 1), B(187, 7), B(187, 8),
+    SAW(194, 4, { ax: 'v', amp: 1.5, spd: 2.7 }),
+    P(201, 'cube'),
+    SP(207, 1.5),
+    O(214, 2, 'dash'),
+    S(222), S(223),
+    O(229, 2, 'down'),
+    SAW(235, 1),
+    PAD(242),
+    S(249), S(250),
+    S(256)
+  ];
+
   JD.LEVELS = [
     { id: 1, name: 'NEON RUSH',      theme: THEME_CLASSIC, mode: 'cube', raw: STAGE1, endTile: 122, speed: 360 },
     { id: 2, name: 'JETSTREAM CAVE', theme: THEME_CAVE,    mode: 'cube', raw: STAGE2, endTile: 138, speed: 360 },
@@ -528,7 +701,12 @@
     { id: 12, name: 'FROST BYTE',    theme: THEME_AURORA,  mode: 'cube', raw: STAGE12, endTile: 157, speed: 485 },
     { id: 13, name: 'POLAR PULSE',   theme: THEME_AURORA,  mode: 'cube', raw: STAGE13, endTile: 166, speed: 490 },
     { id: 14, name: 'WHITEOUT',      theme: THEME_AURORA,  mode: 'cube', raw: STAGE14, endTile: 173, speed: 500 },
-    { id: 15, name: 'EMBER GATE',    theme: THEME_INFERNO, mode: 'cube', raw: STAGE15, endTile: 174, speed: 505 }
+    { id: 15, name: 'EMBER GATE',    theme: THEME_INFERNO, mode: 'cube', raw: STAGE15, endTile: 174, speed: 505 },
+    { id: 16, name: 'MAGMA RUN',     theme: THEME_INFERNO, mode: 'cube', raw: STAGE16, endTile: 176, speed: 515 },
+    { id: 17, name: 'CORE MELT',     theme: THEME_INFERNO, mode: 'cube', raw: STAGE17, endTile: 198, speed: 520 },
+    { id: 18, name: 'OVERDRIVE',     theme: THEME_INFERNO, mode: 'cube', raw: STAGE18, endTile: 200, speed: 525 },
+    { id: 19, name: 'SINGULARITY',   theme: THEME_VOID,    mode: 'cube', raw: STAGE19, endTile: 189, speed: 535 },
+    { id: 20, name: 'JUASEON ZERO',  theme: THEME_VOID,    mode: 'cube', raw: STAGE20, endTile: 266, speed: 540 }
   ];
 
   JD.STAGES = [
@@ -546,7 +724,12 @@
     { id: 12, name: 'FROST BYTE',    mode: 'MINI + JETPACK', c1: '#a6f0ff', c2: '#3d7dff', playable: true },
     { id: 13, name: 'POLAR PULSE',   mode: 'ALL · SAWS',     c1: '#7dffe6', c2: '#9b2dff', playable: true },
     { id: 14, name: 'WHITEOUT',      mode: 'ALL · SPEED',    c1: '#ffffff', c2: '#7de6ff', playable: true },
-    { id: 15, name: 'EMBER GATE',    mode: 'SLAM · BALL',    c1: '#ff8a1e', c2: '#ff3d1a', playable: true }
+    { id: 15, name: 'EMBER GATE',    mode: 'SLAM · BALL',    c1: '#ff8a1e', c2: '#ff3d1a', playable: true },
+    { id: 16, name: 'MAGMA RUN',     mode: 'ALL · FAST',     c1: '#ff6a2d', c2: '#ffce4d', playable: true },
+    { id: 17, name: 'CORE MELT',     mode: 'ALL · TIGHT',    c1: '#ff3d1a', c2: '#ff8a1e', playable: true },
+    { id: 18, name: 'OVERDRIVE',     mode: 'CUBE · MAX',     c1: '#ffce4d', c2: '#ff3d1a', playable: true },
+    { id: 19, name: 'SINGULARITY',   mode: 'ALL · GRAVITY',  c1: '#b84dff', c2: '#3df0ff', playable: true },
+    { id: 20, name: 'JUASEON ZERO',  mode: 'ALL · FINALE',   c1: '#3df0ff', c2: '#c84dff', playable: true }
   ];
 
   JD.buildLevel = function (def) {

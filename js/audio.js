@@ -34,7 +34,13 @@
     fut4: [{ r: 0, q: 'maj7' }, { r: 9, q: 'min7' }, { r: 5, q: 'maj7' }, { r: 7, q: 'add9' }],  // I-vi-IV-V (Aurora anthem)
     fut5: [{ r: 5, q: 'maj7' }, { r: 7, q: 'add9' }, { r: 9, q: 'min7' }, { r: 0, q: 'maj7' }],  // IV-V-vi-I
     fut6: [{ r: 9, q: 'min7' }, { r: 5, q: 'maj7' }, { r: 0, q: 'maj7' }, { r: 7, q: 'add9' }],  // vi-IV-I-V
-    euro4: [{ r: 0, q: 'min' }, { r: 7, q: 'maj' }, { r: 10, q: 'maj' }, { r: 8, q: 'maj' }]     // i-V-VII-VI (big-room)
+    euro4: [{ r: 0, q: 'min' }, { r: 7, q: 'maj' }, { r: 10, q: 'maj' }, { r: 8, q: 'maj' }],    // i-V-VII-VI (big-room)
+    // ---- finale worlds (stages 16-20) ----
+    euro5: [{ r: 0, q: 'min' }, { r: 8, q: 'maj' }, { r: 5, q: 'min' }, { r: 7, q: 'maj' }],     // i-VI-iv-V
+    euro6: [{ r: 0, q: 'min' }, { r: 3, q: 'maj' }, { r: 7, q: 'maj' }, { r: 8, q: 'maj' }],     // i-III-V-VI
+    euro7: [{ r: 0, q: 'min' }, { r: 10, q: 'maj' }, { r: 7, q: 'maj' }, { r: 8, q: 'maj' }],    // i-VII-V-VI
+    fut8: [{ r: 0, q: 'add9' }, { r: 7, q: 'maj7' }, { r: 9, q: 'min7' }, { r: 5, q: 'maj7' }],  // I-V-vi-IV (epic)
+    dub5: [{ r: 0, q: 'min' }, { r: 3, q: 'maj' }, { r: 8, q: 'maj' }, { r: 7, q: 'maj' }]
   };
 
   // ---- MELODIC HOOKS (semitone offsets from key, per bar, 16 steps; n = rest) ----
@@ -137,6 +143,40 @@
       [22, n, 22, n, 19, n, 22, n, 24, n, 22, n, 19, n, 17, n],
       [24, n, 27, n, 29, n, 27, n, 24, n, 22, n, 24, n, n, n],
       [27, n, 26, n, 24, n, 22, n, 19, n, 22, n, 24, n, n, n]
+    ],
+    // ---- finale (stages 16-20): bigger, faster, more dramatic ----
+    // EURODANCE / BIG-ROOM (Inferno climb, stages 16-18)
+    euro5: [
+      [19, n, 19, n, 22, n, 24, n, 22, n, 19, n, 17, n, n, n],
+      [15, n, 15, n, 19, n, 22, n, 19, n, 17, n, 15, n, n, n],
+      [20, n, 19, n, 17, n, 15, n, 17, n, 19, n, 20, n, n, n],
+      [22, n, 20, n, 19, n, 17, n, 19, n, 22, n, 24, n, n, n]
+    ],
+    euro6: [
+      [24, n, 22, 24, 19, n, 19, n, 22, n, 24, n, 27, n, n, n],
+      [22, n, 19, 22, 15, n, 15, n, 19, n, 22, n, 24, n, n, n],
+      [27, n, 26, 24, 22, n, 19, n, 22, n, 24, n, 27, n, n, n],
+      [29, n, 27, 24, 22, n, 20, n, 19, n, 22, n, 24, n, n, n]
+    ],
+    euro7: [
+      [24, 24, n, 27, 24, n, 22, n, 19, 19, n, 22, 24, n, n, n],
+      [22, 22, n, 24, 22, n, 19, n, 15, 15, n, 19, 22, n, n, n],
+      [27, 27, n, 29, 27, n, 24, n, 22, 22, n, 24, 27, n, n, n],
+      [31, n, 29, 27, 24, n, 22, n, 19, n, 22, 24, 27, n, n, n]
+    ],
+    // FUTURE BASS — epic, emotional finale build (stage 19)
+    fut8: [
+      [12, n, 16, n, 19, n, 24, n, 19, n, 16, n, 14, n, n, n],
+      [14, n, 17, n, 21, n, 24, n, 21, n, 17, n, 14, n, n, n],
+      [24, n, 23, n, 19, n, 16, n, 19, n, 21, n, 24, n, n, n],
+      [26, n, 24, n, 21, n, 19, n, 16, n, 19, 21, 24, n, n, n]
+    ],
+    // DUBSTEP — heavy boss riff (stage 20)
+    dub5: [
+      [12, n, n, n, 15, n, 12, n, 19, n, n, n, 17, n, n, n],
+      [12, n, n, n, 17, n, 15, n, 12, n, 10, n, 8, n, n, n],
+      [24, n, 22, n, 19, n, 15, n, 12, n, 15, n, 19, n, n, n],
+      [20, n, 19, n, 15, n, 12, n, 10, n, 12, 15, 17, n, n, n]
     ]
   };
 
@@ -180,7 +220,14 @@
     s12: { genre: 'future', bpm: 154, root: 196.00, prog: P.fut6, lead: L.fut6 },
     s13: { genre: 'future', bpm: 155, root: 174.61, prog: P.fut2, lead: L.fut7 },
     // ---- Inferno: EURODANCE / BIG-ROOM ANTHEM (stage 15) ----
-    s14: { genre: 'euro', bpm: 158, root: 138.59, prog: P.euro4, lead: L.euro4 }
+    s14: { genre: 'euro', bpm: 158, root: 138.59, prog: P.euro4, lead: L.euro4 },
+    // ---- Inferno climb: EURODANCE / BIG-ROOM (stages 16-18) ----
+    s15: { genre: 'euro', bpm: 158, root: 130.81, prog: P.euro5, lead: L.euro5 },
+    s16: { genre: 'euro', bpm: 160, root: 146.83, prog: P.euro6, lead: L.euro6 },
+    s17: { genre: 'euro', bpm: 162, root: 155.56, prog: P.euro7, lead: L.euro7 },
+    // ---- Finale: epic future-bass build + heavy dubstep boss (stages 19-20) ----
+    s18: { genre: 'future', bpm: 150, root: 174.61, prog: P.fut8, lead: L.fut8 },
+    s19: { genre: 'dub', bpm: 146, root: 103.83, prog: P.dub5, lead: L.dub5, wob: [2, 4, 8, 4] }
   };
 
   var A = {
