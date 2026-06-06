@@ -184,63 +184,73 @@
       };
       rpEar(-1); rpEar(1);
 
-      // ---- small cream forehead blaze ----
-      ctx.fillStyle = cream;
-      ctx.beginPath(); ctx.moveTo(0, -0.46 * s);
-      ctx.quadraticCurveTo(-0.07 * s, -0.30 * s, 0, -0.20 * s);
-      ctx.quadraticCurveTo(0.07 * s, -0.30 * s, 0, -0.46 * s);
-      ctx.closePath(); ctx.fill();
-
-      // ---- darker red side-stripe markings ----
-      ctx.strokeStyle = 'rgba(74,24,12,0.45)'; ctx.lineWidth = s * 0.055; ctx.lineCap = 'round';
+      // ---- darker-red forehead squiggle (between the ears) ----
+      ctx.strokeStyle = 'rgba(74,24,12,0.5)'; ctx.lineWidth = s * 0.05; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
       ctx.beginPath();
-      ctx.moveTo(-0.40 * s, -0.30 * s); ctx.quadraticCurveTo(-0.46 * s, -0.10 * s, -0.42 * s, 0.10 * s);
-      ctx.moveTo(0.40 * s, -0.30 * s); ctx.quadraticCurveTo(0.46 * s, -0.10 * s, 0.42 * s, 0.10 * s);
+      ctx.moveTo(-0.08 * s, -0.42 * s);
+      ctx.quadraticCurveTo(0.02 * s, -0.37 * s, -0.04 * s, -0.31 * s);
+      ctx.quadraticCurveTo(-0.10 * s, -0.25 * s, 0.04 * s, -0.21 * s);
       ctx.stroke();
 
-      // ---- wide white muzzle / cheek mask ----
+      // ---- white muzzle: ONLY around the nose + mouth (compact rounded puff) ----
       ctx.fillStyle = white;
-      ctx.beginPath(); ctx.ellipse(-0.19 * s, 0.20 * s, 0.23 * s, 0.21 * s, 0, 0, 6.283); ctx.fill();
-      ctx.beginPath(); ctx.ellipse(0.19 * s, 0.20 * s, 0.23 * s, 0.21 * s, 0, 0, 6.283); ctx.fill();
-      ctx.beginPath(); ctx.ellipse(0, 0.11 * s, 0.18 * s, 0.27 * s, 0, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.ellipse(-0.13 * s, 0.27 * s, 0.155 * s, 0.15 * s, 0, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.ellipse(0.13 * s, 0.27 * s, 0.155 * s, 0.15 * s, 0, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.ellipse(0, 0.17 * s, 0.13 * s, 0.20 * s, 0, 0, 6.283); ctx.fill();
 
-      // ---- white teardrop eyebrow markings (the red-panda signature) ----
+      // ---- slim white tear-streak markings on the cheeks (outside / below the eyes) ----
+      var streak = function (side) {
+        var X = side * 0.36 * s;
+        ctx.fillStyle = white;
+        ctx.beginPath();
+        ctx.moveTo(X, 0.30 * s);
+        ctx.quadraticCurveTo(X - side * 0.075 * s, 0.16 * s, X - side * 0.03 * s, 0.05 * s);
+        ctx.quadraticCurveTo(X + side * 0.02 * s, 0.01 * s, X + side * 0.055 * s, 0.07 * s);
+        ctx.quadraticCurveTo(X + side * 0.07 * s, 0.18 * s, X, 0.30 * s);
+        ctx.closePath(); ctx.fill();
+      };
+      streak(-1); streak(1);
+
+      // ---- white teardrop eyebrow markings ----
       var brow2 = function (cx) {
         ctx.fillStyle = white;
         ctx.beginPath();
-        ctx.moveTo(cx, -0.11 * s);
-        ctx.quadraticCurveTo(cx - 0.12 * s, -0.17 * s, cx - 0.07 * s, -0.28 * s);
-        ctx.quadraticCurveTo(cx, -0.34 * s, cx + 0.07 * s, -0.28 * s);
-        ctx.quadraticCurveTo(cx + 0.12 * s, -0.17 * s, cx, -0.11 * s);
+        ctx.moveTo(cx, -0.15 * s);
+        ctx.quadraticCurveTo(cx - 0.10 * s, -0.20 * s, cx - 0.055 * s, -0.30 * s);
+        ctx.quadraticCurveTo(cx, -0.35 * s, cx + 0.055 * s, -0.30 * s);
+        ctx.quadraticCurveTo(cx + 0.10 * s, -0.20 * s, cx, -0.15 * s);
         ctx.closePath(); ctx.fill();
       };
-      brow2(-0.20 * s); brow2(0.20 * s);
+      brow2(-0.19 * s); brow2(0.19 * s);
 
-      // ---- big sparkly eyes (sit on the cheek/forehead border) ----
-      var ey = -0.01 * s, edx = 0.20 * s, er = 0.135 * s;
-      ctx.fillStyle = dark;
+      // ---- big glossy eyes, directly on the red fur (dark base + warm lower gloss + sparkles) ----
+      var ey = 0.02 * s, edx = 0.19 * s, er = 0.15 * s;
+      ctx.fillStyle = '#241208';
       ctx.beginPath(); ctx.arc(-edx, ey, er, 0, 6.283); ctx.fill();
       ctx.beginPath(); ctx.arc(edx, ey, er, 0, 6.283); ctx.fill();
-      ctx.fillStyle = '#ffffff';
-      ctx.beginPath(); ctx.arc(-edx - er * 0.3, ey - er * 0.35, er * 0.42, 0, 6.283); ctx.fill();
-      ctx.beginPath(); ctx.arc(edx - er * 0.3, ey - er * 0.35, er * 0.42, 0, 6.283); ctx.fill();
-      ctx.beginPath(); ctx.arc(-edx + er * 0.4, ey + er * 0.35, er * 0.2, 0, 6.283); ctx.fill();
-      ctx.beginPath(); ctx.arc(edx + er * 0.4, ey + er * 0.35, er * 0.2, 0, 6.283); ctx.fill();
+      ctx.fillStyle = '#9a4a26';                              // warm two-tone lower gloss
+      ctx.beginPath(); ctx.arc(-edx, ey + er * 0.34, er * 0.6, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.arc(edx, ey + er * 0.34, er * 0.6, 0, 6.283); ctx.fill();
+      ctx.fillStyle = '#ffffff';                              // big top highlight + small sparkle
+      ctx.beginPath(); ctx.arc(-edx - er * 0.3, ey - er * 0.34, er * 0.36, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.arc(edx - er * 0.3, ey - er * 0.34, er * 0.36, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.arc(-edx + er * 0.36, ey + er * 0.22, er * 0.15, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.arc(edx + er * 0.36, ey + er * 0.22, er * 0.15, 0, 6.283); ctx.fill();
 
-      // ---- nose ----
-      ctx.fillStyle = dark;
+      // ---- nose (rounded, at top of the white muzzle) ----
+      ctx.fillStyle = '#1c0e07';
       ctx.beginPath();
-      ctx.moveTo(-0.075 * s, 0.07 * s); ctx.lineTo(0.075 * s, 0.07 * s);
-      ctx.quadraticCurveTo(0.075 * s, 0.15 * s, 0, 0.18 * s);
-      ctx.quadraticCurveTo(-0.075 * s, 0.15 * s, -0.075 * s, 0.07 * s);
+      ctx.moveTo(-0.08 * s, 0.10 * s); ctx.lineTo(0.08 * s, 0.10 * s);
+      ctx.quadraticCurveTo(0.085 * s, 0.18 * s, 0, 0.21 * s);
+      ctx.quadraticCurveTo(-0.085 * s, 0.18 * s, -0.08 * s, 0.10 * s);
       ctx.closePath(); ctx.fill();
 
       // ---- smile ----
-      ctx.strokeStyle = dark; ctx.lineWidth = s * 0.03; ctx.lineCap = 'round';
+      ctx.strokeStyle = '#3a1c10'; ctx.lineWidth = s * 0.028; ctx.lineCap = 'round';
       ctx.beginPath();
-      ctx.moveTo(0, 0.18 * s); ctx.lineTo(0, 0.23 * s);
-      ctx.moveTo(0, 0.23 * s); ctx.quadraticCurveTo(-0.09 * s, 0.30 * s, -0.15 * s, 0.23 * s);
-      ctx.moveTo(0, 0.23 * s); ctx.quadraticCurveTo(0.09 * s, 0.30 * s, 0.15 * s, 0.23 * s);
+      ctx.moveTo(0, 0.21 * s); ctx.lineTo(0, 0.26 * s);
+      ctx.moveTo(0, 0.26 * s); ctx.quadraticCurveTo(-0.08 * s, 0.32 * s, -0.13 * s, 0.26 * s);
+      ctx.moveTo(0, 0.26 * s); ctx.quadraticCurveTo(0.08 * s, 0.32 * s, 0.13 * s, 0.26 * s);
       ctx.stroke();
     }
     ctx.restore();
