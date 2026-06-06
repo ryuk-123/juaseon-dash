@@ -27,7 +27,14 @@
     fut2: [{ r: 8, q: 'maj7' }, { r: 10, q: 'add9' }, { r: 0, q: 'min7' }, { r: 3, q: 'maj7' }], // VI-VII-i-III (future-bass staple)
     fut3: [{ r: 5, q: 'min7' }, { r: 10, q: 'add9' }, { r: 3, q: 'maj7' }, { r: 8, q: 'maj7' }],
     dub1: [{ r: 0, q: 'min' }, { r: 0, q: 'min' }, { r: 10, q: 'maj' }, { r: 8, q: 'maj' }],
-    dub2: [{ r: 0, q: 'min' }, { r: 8, q: 'maj' }, { r: 0, q: 'min' }, { r: 10, q: 'maj' }]
+    dub2: [{ r: 0, q: 'min' }, { r: 8, q: 'maj' }, { r: 0, q: 'min' }, { r: 10, q: 'maj' }],
+    // ---- new worlds (stages 9-15) ----
+    dub3: [{ r: 0, q: 'min' }, { r: 5, q: 'min' }, { r: 8, q: 'maj' }, { r: 7, q: 'maj' }],      // i-iv-VI-V
+    dub4: [{ r: 0, q: 'min' }, { r: 10, q: 'maj' }, { r: 8, q: 'maj' }, { r: 3, q: 'maj' }],     // i-VII-VI-III
+    fut4: [{ r: 0, q: 'maj7' }, { r: 9, q: 'min7' }, { r: 5, q: 'maj7' }, { r: 7, q: 'add9' }],  // I-vi-IV-V (Aurora anthem)
+    fut5: [{ r: 5, q: 'maj7' }, { r: 7, q: 'add9' }, { r: 9, q: 'min7' }, { r: 0, q: 'maj7' }],  // IV-V-vi-I
+    fut6: [{ r: 9, q: 'min7' }, { r: 5, q: 'maj7' }, { r: 0, q: 'maj7' }, { r: 7, q: 'add9' }],  // vi-IV-I-V
+    euro4: [{ r: 0, q: 'min' }, { r: 7, q: 'maj' }, { r: 10, q: 'maj' }, { r: 8, q: 'maj' }]     // i-V-VII-VI (big-room)
   };
 
   // ---- MELODIC HOOKS (semitone offsets from key, per bar, 16 steps; n = rest) ----
@@ -84,6 +91,52 @@
       [12, n, 15, n, 19, n, 22, n, 19, n, 15, n, 12, n, n, n],
       [24, n, 22, n, 19, n, 15, n, 12, n, 15, n, 19, n, n, n],
       [19, n, 15, n, 12, n, 10, n, 12, n, 15, 12, 10, n, n, n]
+    ],
+    // ---- new worlds (stages 9-15): big, party-forward hooks ----
+    // DUBSTEP — glitch riffs that sing over the wobble (stages 9-10)
+    dub3: [
+      [12, n, 12, n, 15, n, 19, n, 15, n, 12, n, 10, n, n, n],
+      [12, n, 12, n, 17, n, 15, n, 12, n, 10, n, 8, n, n, n],
+      [19, n, 17, n, 15, n, 12, n, 15, n, 17, n, 19, n, n, n],
+      [22, n, 19, n, 17, n, 15, n, 12, n, 10, n, 12, n, n, n]
+    ],
+    dub4: [
+      [12, n, 15, n, 12, n, 19, n, 12, n, 15, n, 12, n, n, n],
+      [10, n, 12, n, 10, n, 17, n, 10, n, 12, n, 10, n, n, n],
+      [15, n, 19, n, 22, n, 19, n, 15, n, 12, n, 15, n, n, n],
+      [24, n, 22, n, 19, n, 15, n, 12, n, 10, n, 12, n, n, n]
+    ],
+    // FUTURE BASS / MELODIC FESTIVAL — euphoric, hands-in-the-air (stages 11-14)
+    fut4: [
+      [12, n, 14, n, 16, n, 19, n, 16, n, 14, n, 12, n, n, n],
+      [9, n, 11, n, 12, n, 16, n, 14, n, 12, n, 9, n, n, n],
+      [16, n, 14, n, 12, n, 16, n, 19, n, 21, n, 19, n, n, n],
+      [12, n, 11, n, 9, n, 7, n, 9, n, 12, n, 16, n, 19, n]
+    ],
+    fut5: [
+      [19, n, 16, 19, 21, n, 19, n, 16, n, 12, n, 16, n, n, n],
+      [16, n, 12, 16, 19, n, 16, n, 14, n, 12, n, 9, n, n, n],
+      [21, n, 19, 21, 24, n, 21, n, 19, n, 16, n, 19, n, n, n],
+      [16, n, 14, n, 12, n, 11, n, 12, n, 14, n, 16, n, 19, n]
+    ],
+    fut6: [
+      [12, 12, n, 16, 19, n, 16, n, 12, 12, n, 14, 16, n, n, n],
+      [9, 9, n, 12, 16, n, 12, n, 9, 9, n, 11, 12, n, n, n],
+      [16, 16, n, 19, 21, n, 19, n, 16, 16, n, 17, 19, n, n, n],
+      [21, n, 19, n, 16, n, 14, n, 12, n, 14, 16, 19, n, n, n]
+    ],
+    fut7: [
+      [24, n, 22, n, 19, n, 22, n, 24, n, 26, n, 24, n, n, n],
+      [19, n, 17, n, 16, n, 17, n, 19, n, 21, n, 19, n, n, n],
+      [24, n, 26, n, 28, n, 26, n, 24, n, 22, n, 19, n, n, n],
+      [22, n, 19, n, 16, n, 19, n, 22, n, 24, n, 26, n, 28, n]
+    ],
+    // EURODANCE / BIG-ROOM — towering minor anthem (stage 15)
+    euro4: [
+      [24, n, 24, n, 22, n, 24, n, 27, n, 24, n, 22, n, 19, n],
+      [22, n, 22, n, 19, n, 22, n, 24, n, 22, n, 19, n, 17, n],
+      [24, n, 27, n, 29, n, 27, n, 24, n, 22, n, 24, n, n, n],
+      [27, n, 26, n, 24, n, 22, n, 19, n, 22, n, 24, n, n, n]
     ]
   };
 
@@ -117,7 +170,17 @@
     s5: { genre: 'future', bpm: 152, root: 155.56, prog: P.fut3, lead: L.fut3 },
     // ---- Glitch: DUBSTEP / BROSTEP ----
     s6: { genre: 'dub', bpm: 140, root: 130.81, prog: P.dub1, lead: L.dub1, wob: [2, 2, 4, 4] },
-    s7: { genre: 'dub', bpm: 140, root: 110.00, prog: P.dub2, lead: L.dub2, wob: [4, 2, 8, 4] }
+    s7: { genre: 'dub', bpm: 140, root: 110.00, prog: P.dub2, lead: L.dub2, wob: [4, 2, 8, 4] },
+    // ---- Glitch cont'd: DUBSTEP (stages 9-10) ----
+    s8: { genre: 'dub', bpm: 142, root: 123.47, prog: P.dub3, lead: L.dub3, wob: [2, 4, 2, 4] },
+    s9: { genre: 'dub', bpm: 144, root: 116.54, prog: P.dub4, lead: L.dub4, wob: [4, 4, 8, 2] },
+    // ---- Aurora: FUTURE BASS / MELODIC FESTIVAL (stages 11-14) ----
+    s10: { genre: 'future', bpm: 150, root: 185.00, prog: P.fut4, lead: L.fut4 },
+    s11: { genre: 'future', bpm: 152, root: 164.81, prog: P.fut5, lead: L.fut5 },
+    s12: { genre: 'future', bpm: 154, root: 196.00, prog: P.fut6, lead: L.fut6 },
+    s13: { genre: 'future', bpm: 155, root: 174.61, prog: P.fut2, lead: L.fut7 },
+    // ---- Inferno: EURODANCE / BIG-ROOM ANTHEM (stage 15) ----
+    s14: { genre: 'euro', bpm: 158, root: 138.59, prog: P.euro4, lead: L.euro4 }
   };
 
   var A = {
@@ -134,7 +197,7 @@
 
       this.master = c.createGain();
       this.muted = localStorage.getItem('jd_muted') === '1';
-      this.master.gain.value = this.muted ? 0 : 0.9;
+      this.master.gain.value = this.muted ? 0 : 0.95;
       this.master.connect(c.destination);
 
       this.comp = c.createDynamicsCompressor();
@@ -192,7 +255,7 @@
 
     toggleMute: function () {
       this.init(); this.muted = !this.muted;
-      if (this.master) this.master.gain.value = this.muted ? 0 : 0.9;
+      if (this.master) this.master.gain.value = this.muted ? 0 : 0.95;
       localStorage.setItem('jd_muted', this.muted ? '1' : '0');
       return this.muted;
     },
@@ -233,8 +296,8 @@
         var ln = tr.lead[bar][s];
         if (ln != n) {
           var noteDur = this._noteLen(tr.lead[bar], s);
-          this._lead(f(root, ln), t, noteDur, 0.27);
-          this._super(f(root, ln + 12), t, noteDur * 0.9, 0.05, 'lead', 3, 10); // shimmer octave
+          this._lead(f(root, ln), t, noteDur, 0.30);
+          this._super(f(root, ln + 12), t, noteDur * 0.9, 0.06, 'lead', 3, 10); // shimmer octave
         }
       }
     },
@@ -261,8 +324,8 @@
         var ln = tr.lead[bar][s];
         if (ln != n) {
           var noteDur = this._noteLen(tr.lead[bar], s);
-          this._lead(f(root, ln + 12), t, noteDur, 0.26);
-          this._pluck(f(root, ln + 12), t, 0.12);
+          this._lead(f(root, ln + 12), t, noteDur, 0.29);
+          this._pluck(f(root, ln + 12), t, 0.14);
         }
       }
     },
@@ -288,7 +351,7 @@
         var ln = tr.lead[bar][s];
         if (ln != n) {
           var noteDur = this._noteLen(tr.lead[bar], s);
-          this._lead(f(root, ln + 12), t, noteDur, 0.24);
+          this._lead(f(root, ln + 12), t, noteDur, 0.27);
         }
       }
     },
@@ -297,7 +360,7 @@
     _duck: function (t, steps) {
       var p = this.pump.gain;
       p.cancelScheduledValues(t);
-      p.setValueAtTime(0.22, t);
+      p.setValueAtTime(0.18, t);
       p.linearRampToValueAtTime(1.0, t + this.sec16 * (steps || 1.9));
     },
     _pulse: function (t) {
@@ -344,7 +407,7 @@
       g.gain.exponentialRampToValueAtTime(vol, t + 0.014);
       g.gain.setValueAtTime(vol, t + Math.max(0.03, dur * 0.55));
       g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-      var filt = c.createBiquadFilter(); filt.type = 'lowpass'; filt.frequency.value = 4200; filt.Q.value = 0.9;
+      var filt = c.createBiquadFilter(); filt.type = 'lowpass'; filt.frequency.value = 4800; filt.Q.value = 0.95;
       var mix = c.createGain(); mix.gain.value = 0.4;
       // subtle vibrato for a vocal, expressive feel
       var vib = c.createOscillator(); vib.type = 'sine'; vib.frequency.value = 5.6;

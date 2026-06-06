@@ -63,7 +63,7 @@
     player: 'red-fang'
   };
 
-  // Glitch / cyber theme (World 3, stages 7-8): dark green-black, acid-green blocks, red spikes
+  // Glitch / cyber theme (World 3, stages 7-10): dark green-black, acid-green blocks, red spikes
   var THEME_GLITCH = {
     name: 'glitch',
     sky0: '#0a2410', sky1: '#03100a',
@@ -73,6 +73,30 @@
     blockTop: '#9dff4d', blockBottom: '#1a9c4d', blockGlow: '#4dff8a',
     spikeTop: '#ff4d6a', spikeBottom: '#9c1a2d', spikeGlow: '#ff3d5a',
     player: 'bandit'
+  };
+
+  // Aurora / glacial theme (World 4, stages 11-14): deep-ice blue sky, aurora-violet spikes, frost blocks
+  var THEME_AURORA = {
+    name: 'aurora',
+    sky0: '#0a3a5e', sky1: '#06122e',
+    grid: 'rgba(120, 220, 255, 0.12)',
+    ground0: '#0a2a4a', ground1: '#031026',
+    floorLine: '#7dffe6',
+    blockTop: '#a6f0ff', blockBottom: '#3d7dff', blockGlow: '#7de6ff',
+    spikeTop: '#ff7de6', spikeBottom: '#9b2dff', spikeGlow: '#ff5af0',
+    player: 'blue-teeth'
+  };
+
+  // Inferno / magma theme (World 5, stage 15+): deep-red sky, ember blocks, white-hot spikes
+  var THEME_INFERNO = {
+    name: 'inferno',
+    sky0: '#5e1206', sky1: '#2a0604',
+    grid: 'rgba(255, 140, 60, 0.13)',
+    ground0: '#3a0e06', ground1: '#1a0402',
+    floorLine: '#ff7a2d',
+    blockTop: '#ffd24d', blockBottom: '#ff3d1a', blockGlow: '#ff8a1e',
+    spikeTop: '#fff0a6', spikeBottom: '#ff5a1a', spikeGlow: '#ffce4d',
+    player: 'red-fang'
   };
 
   // ---- Stage 1: cube tutorial ----
@@ -292,6 +316,203 @@
     S(203)
   ];
 
+  // ---- Stage 9: DATA STORM — cube speed-lanes -> jetpack -> cube (dual-speed remix) ----
+  var STAGE9 = [
+    S(12),
+    S(18), S(19),
+    PAD(25),
+    SP(31, 1.3),               // FAST lane
+    S(40),
+    S(48),
+    O(55, 2), S(54), S(56),
+    SP(63, 0.65),              // SLOW precision
+    S(69), S(70),
+    SAW(76, 1),
+    S(82), S(83),
+    SP(89, 1.0),               // normal
+    P(95, 'jet'),              // jetpack tunnel
+    B(101, 7), B(101, 8),
+    SAW(107, 4),
+    B(113, 0), B(113, 1),
+    SAW(119, 5),
+    B(125, 7), B(125, 8),
+    P(131, 'cube'),
+    SP(137, 1.3),              // FAST finish
+    S(146),
+    O(153, 2), S(152), S(154),
+    S(161),
+    PAD(167),
+    S(174), S(175),
+    S(181)
+  ];
+
+  // ---- Stage 10: FIREWALL — dash-orb chains across every mode ----
+  var STAGE10 = [
+    S(11),
+    O(17, 2, 'dash'),          // teach the dash launch
+    S(24), S(25),
+    O(31, 2, 'dash'),
+    SAW(37, 1),
+    O(43, 2, 'dash'),          // dash over the saw
+    S(50), S(51),
+    P(57, 'ball'),             // ball flips
+    SAW(64, 1),
+    SAW(71, 8),
+    SAW(78, 1),
+    P(85, 'jet'),              // jetpack
+    B(91, 7), B(91, 8),
+    SAW(97, 4),
+    B(103, 0), B(103, 1),
+    SAW(109, 5),
+    P(115, 'cube'),
+    O(121, 2, 'dash'),         // dash chain finale
+    S(128), S(129),
+    O(135, 2, 'dash'),
+    PAD(142),
+    S(149), S(150),
+    SAW(156, 1),
+    S(162),
+    S(168), S(169),
+    S(175)
+  ];
+
+  // ---- Stage 11: AURORA ASCENT — gravity-orb chains + ball (World 4) ----
+  var STAGE11 = [
+    S(12),
+    S(18), S(19),
+    PAD(25),
+    O(32, 2, 'grav'),          // jump + flip UP to ceiling
+    SAW(38, 1),                // floor saws — ride the ceiling
+    SAW(44, 1),
+    O(50, 6, 'grav'),          // ceiling-height orb: flip back DOWN
+    S(56),
+    O(62, 2, 'grav'),          // up again
+    SAW(68, 1),
+    SAW(74, 1),
+    O(80, 6, 'grav'),          // down again
+    S(86), S(87),
+    P(93, 'ball'),             // ball: alternating floor/ceiling saws
+    SAW(100, 1),
+    SAW(107, 8),
+    SAW(114, 1),
+    SAW(121, 8),
+    P(127, 'cube'),
+    O(133, 2), S(132), S(134), // jump-orb over twins
+    PAD(140),
+    S(147), S(148),
+    S(154)
+  ];
+
+  // ---- Stage 12: FROST BYTE — mini-mode + jetpack tunnels (World 4) ----
+  var STAGE12 = [
+    S(11),
+    S(17),
+    PAD(23),
+    O(30, 2), S(29), S(31),
+    P(37, 'mini'),             // MINI: tight corridors
+    S(43),
+    S(49), S(50),
+    SAW(56, 1),
+    S(62),
+    P(68, 'jet'),              // mini + jetpack = narrow tunnel
+    B(74, 6), B(74, 7), B(74, 8),
+    SAW(80, 4),
+    B(86, 0), B(86, 1), B(86, 2),
+    SAW(92, 5),
+    B(98, 6), B(98, 7), B(98, 8),
+    P(104, 'cube'),
+    S(110),
+    SAW(116, 1),
+    S(122), S(123),
+    P(129, 'big'),             // back to full size
+    PAD(135),
+    S(142), S(143),
+    S(149)
+  ];
+
+  // ---- Stage 13: POLAR PULSE — timed moving saws, all modes (World 4) ----
+  var STAGE13 = [
+    S(11),
+    SAW(18, 3, { ax: 'v', amp: 2,   spd: 2.2 }),
+    S(25),
+    SAW(32, 4, { ax: 'v', amp: 2.5, spd: 1.8 }),
+    O(39, 2), S(38), S(40),
+    P(46, 'jet'),
+    SAW(53, 4, { ax: 'v', amp: 3,   spd: 2.4 }),
+    B(60, 0), B(60, 1),
+    SAW(66, 5, { ax: 'v', amp: 2.5, spd: 2 }),
+    B(72, 7), B(72, 8),
+    SAW(79, 4, { ax: 'v', amp: 3,   spd: 2.6 }),
+    P(86, 'cube'),
+    SAW(93, 1, { ax: 'v', amp: 1.3, spd: 3 }),
+    S(99), S(100),
+    SAW(106, 2, { ax: 'v', amp: 2,  spd: 2.5 }),
+    PAD(112),
+    O(119, 2, 'dash'),
+    SAW(125, 1, { ax: 'v', amp: 1.4, spd: 3.2 }),
+    S(131), S(132),
+    SAW(138, 3, { ax: 'v', amp: 2,  spd: 2.2 }),
+    S(145),
+    S(151), S(152),
+    S(158)
+  ];
+
+  // ---- Stage 14: WHITEOUT — speed swings + every toy (World 4 finale) ----
+  var STAGE14 = [
+    S(11),
+    SP(17, 1.4),               // sudden fast swing
+    S(26),
+    O(34, 2), S(33), S(35),
+    SP(42, 0.6),               // hard brake — precision
+    S(48), S(49),
+    SAW(55, 1, { ax: 'v', amp: 1.3, spd: 3 }),
+    O(61, 2, 'grav'),
+    SAW(67, 1),
+    O(73, 6, 'grav'),
+    SP(79, 1.35),              // fast again
+    P(85, 'jet'),
+    SAW(92, 4, { ax: 'v', amp: 2.5, spd: 2.2 }),
+    B(99, 0), B(99, 1),
+    SAW(105, 5, { ax: 'v', amp: 2.5, spd: 2 }),
+    P(112, 'cube'),
+    SP(118, 1.0),
+    O(124, 2, 'dash'),
+    S(131), S(132),
+    O(138, 2, 'down'),         // slam back to floor
+    SAW(144, 1),
+    PAD(151),
+    S(158), S(159),
+    S(165)
+  ];
+
+  // ---- Stage 15: EMBER GATE — black-orb slams + ball (World 5) ----
+  var STAGE15 = [
+    S(12),
+    S(18), S(19),
+    PAD(25),
+    O(31, 2), S(30), S(32),
+    O(38, 4, 'down'),          // launch off pad, slam down past a high gap
+    S(45),
+    B(51), B(52),
+    O(58, 4, 'down'),
+    S(65), S(66),
+    P(72, 'ball'),             // ball: flips + ceiling/floor saws
+    SAW(79, 1),
+    SAW(86, 8),
+    SAW(93, 1),
+    O(99, 5, 'grav'),
+    SAW(105, 1),
+    P(111, 'cube'),
+    O(117, 2, 'dash'),
+    S(124), S(125),
+    O(131, 4, 'down'),
+    S(138),
+    PAD(144),
+    O(151, 2), S(150), S(152),
+    S(159), S(160),
+    S(166)
+  ];
+
   JD.LEVELS = [
     { id: 1, name: 'NEON RUSH',      theme: THEME_CLASSIC, mode: 'cube', raw: STAGE1, endTile: 122, speed: 360 },
     { id: 2, name: 'JETSTREAM CAVE', theme: THEME_CAVE,    mode: 'cube', raw: STAGE2, endTile: 138, speed: 360 },
@@ -300,7 +521,14 @@
     { id: 5, name: 'VAPOR DRIFT',    theme: THEME_SUNSET,  mode: 'cube', raw: STAGE5, endTile: 152, speed: 400 },
     { id: 6, name: 'MINI MIRAGE',    theme: THEME_SUNSET,  mode: 'cube', raw: STAGE6, endTile: 148, speed: 410 },
     { id: 7, name: 'GLITCH GATE',    theme: THEME_GLITCH,  mode: 'cube', raw: STAGE7, endTile: 158, speed: 430 },
-    { id: 8, name: 'SYSTEM SHOCK',   theme: THEME_GLITCH,  mode: 'cube', raw: STAGE8, endTile: 211, speed: 450 }
+    { id: 8, name: 'SYSTEM SHOCK',   theme: THEME_GLITCH,  mode: 'cube', raw: STAGE8,  endTile: 211, speed: 450 },
+    { id: 9, name: 'DATA STORM',     theme: THEME_GLITCH,  mode: 'cube', raw: STAGE9,  endTile: 190, speed: 460 },
+    { id: 10, name: 'FIREWALL',      theme: THEME_GLITCH,  mode: 'cube', raw: STAGE10, endTile: 184, speed: 470 },
+    { id: 11, name: 'AURORA ASCENT', theme: THEME_AURORA,  mode: 'cube', raw: STAGE11, endTile: 162, speed: 480 },
+    { id: 12, name: 'FROST BYTE',    theme: THEME_AURORA,  mode: 'cube', raw: STAGE12, endTile: 157, speed: 485 },
+    { id: 13, name: 'POLAR PULSE',   theme: THEME_AURORA,  mode: 'cube', raw: STAGE13, endTile: 166, speed: 490 },
+    { id: 14, name: 'WHITEOUT',      theme: THEME_AURORA,  mode: 'cube', raw: STAGE14, endTile: 173, speed: 500 },
+    { id: 15, name: 'EMBER GATE',    theme: THEME_INFERNO, mode: 'cube', raw: STAGE15, endTile: 174, speed: 505 }
   ];
 
   JD.STAGES = [
@@ -311,7 +539,14 @@
     { id: 5, name: 'VAPOR DRIFT',    mode: 'CUBE + JETPACK', c1: '#ffd24d', c2: '#ff5a3d', playable: true },
     { id: 6, name: 'MINI MIRAGE',    mode: 'CUBE · MINI',    c1: '#ff5e8a', c2: '#ffb84d', playable: true },
     { id: 7, name: 'GLITCH GATE',    mode: 'BALL · GRAVITY', c1: '#4dff8a', c2: '#1a9c4d', playable: true },
-    { id: 8, name: 'SYSTEM SHOCK',   mode: 'ALL · BOSS',     c1: '#9dff4d', c2: '#ff4d6a', playable: true }
+    { id: 8, name: 'SYSTEM SHOCK',   mode: 'ALL · BOSS',     c1: '#9dff4d', c2: '#ff4d6a', playable: true },
+    { id: 9, name: 'DATA STORM',     mode: 'CUBE·JET·SPEED', c1: '#4dff8a', c2: '#18e0ff', playable: true },
+    { id: 10, name: 'FIREWALL',      mode: 'ALL · DASH',     c1: '#ff4d6a', c2: '#9dff4d', playable: true },
+    { id: 11, name: 'AURORA ASCENT', mode: 'GRAVITY · BALL', c1: '#7de6ff', c2: '#ff5af0', playable: true },
+    { id: 12, name: 'FROST BYTE',    mode: 'MINI + JETPACK', c1: '#a6f0ff', c2: '#3d7dff', playable: true },
+    { id: 13, name: 'POLAR PULSE',   mode: 'ALL · SAWS',     c1: '#7dffe6', c2: '#9b2dff', playable: true },
+    { id: 14, name: 'WHITEOUT',      mode: 'ALL · SPEED',    c1: '#ffffff', c2: '#7de6ff', playable: true },
+    { id: 15, name: 'EMBER GATE',    mode: 'SLAM · BALL',    c1: '#ff8a1e', c2: '#ff3d1a', playable: true }
   ];
 
   JD.buildLevel = function (def) {

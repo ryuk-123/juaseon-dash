@@ -31,6 +31,8 @@
   JD.paused = false;
   JD._respawn = null;           // computed checkpoint (or null = restart from start)
   JD._countdown = 0;            // 3..0 drop-in countdown timer
+  JD.stageFails = 0;            // deaths on the current stage; checkpoints unlock from the 6th attempt
+  JD.CHECKPOINT_AFTER = 5;      // restart from start for the first 5 deaths, checkpoint from the 6th on
 
   JD.baseSpeed = 360;   // current stage's base scroll speed (before speed-portal multiplier)
 
@@ -41,6 +43,7 @@
     JD.baseSpeed = def.speed || 360;
     JD.config.speed = JD.baseSpeed;     // reset every start so menus/other stages are unaffected
     JD.attempts = 1;
+    JD.stageFails = 0;                   // fail counter resets when you (re)enter or beat a stage
     JD.paused = false;
     JD._respawn = null;                 // fresh stage → no checkpoint yet
     beginRun();
@@ -160,9 +163,12 @@
     JD._deathTimer = 0;
     JD.spawnExplosion(p.x + p.size / 2, p.y + p.size / 2, p.char.glow);
     sfx('death');
-    // Checkpoint eligibility: stages with id >= 3, and only past the halfway mark.
+    JD.stageFails++;                                   // count this death toward the checkpoint gate
+    // Checkpoint eligibility: stages id >= 3, past halfway, AND only from the 6th attempt onward.
+    // (First 5 deaths always restart from the very start of the stage.)
     var lvl = JD.LEVELS[JD.currentStageIndex];
-    JD._respawn = (lvl && lvl.id >= 3 && JD.progress > 50) ? JD.findCheckpoint(p.x) : null;
+    var eligible = lvl && lvl.id >= 3 && JD.progress > 50 && JD.stageFails > JD.CHECKPOINT_AFTER;
+    JD._respawn = eligible ? JD.findCheckpoint(p.x) : null;
     JD.onDeath && JD.onDeath();
   };
 

@@ -35,14 +35,19 @@ js/main.js        screen-flow state machine, input, persistence, audio wiring, R
 
 ## Gameplay status
 - **8 stages (expanding to 20 — see roadmap below).** 1 NEON RUSH · 2 JETSTREAM CAVE · 3 CHAOS CIRCUIT (original trilogy) · **4 SUNSET SPRINT · 5 VAPOR DRIFT · 6 MINI MIRAGE** (Sunset world, THEME_SUNSET) · **7 GLITCH GATE · 8 SYSTEM SHOCK** (Glitch world, THEME_GLITCH).
-- **Per-stage speed ramp**: `JD.LEVELS[i].speed` (360 → 450 over stages 1→8), set into `JD.config.speed` in `startStage`. Stages 9-20 planned up to ~540.
+- **Per-stage speed ramp**: `JD.LEVELS[i].speed` (360 → 505 over stages 1→15), set into `JD.config.speed` in `startStage`. Stages 16-20 planned up to ~540.
 - **Modes**: cube (tap jump) · jetpack (hold thrust) · ball (tap flip gravity). Mode + gravity-flip portals.
 - **Mechanics**: jump orbs, jump pads, saw blades, instant-death spikes/sides, instant restart, progress % + attempt counter, win screen, stage unlock + best% in localStorage.
 - **11 characters** (canvas-drawn neon): cube/ball shapes, distinct faces. Default per theme but user choice persists.
 - **Controls (GD-style)**: Jump/thrust/flip = Space/↑/W/Click/Tap · Start/confirm = Enter · Pause/back = Esc · Menu nav = ←/→ · Mute = M or 🔊 button.
 
 ## Recent additions (post-milestones)
-- **20-stage expansion + new toys (stages 4-8)** — this session. Plan file: `C:\Users\Alex\.claude\plans\lets-open-and-adjust-glowing-snail.md` (full 20-stage roadmap: 5 worlds of ~4, speed 360→540, new theme per world). New engine mechanics, all additive:
+- **Stages 9-15 + checkpoint gate + party-music pass** — this session (2026-06-05). All additive, no engine API changes.
+  - **7 new stages** (`levels.js`): **9 DATA STORM · 10 FIREWALL** (Glitch world, THEME_GLITCH) · **11 AURORA ASCENT · 12 FROST BYTE · 13 POLAR PULSE · 14 WHITEOUT** (new **THEME_AURORA** — glacial ice-blue/violet) · **15 EMBER GATE** (new **THEME_INFERNO** — magma red/orange). Speeds 460→505. Each stage features its roadmap toy (dual-speed, dash chains, grav-orb chains, mini+jetpack tunnels, timed moving saws, speed swings, black-orb slams). **Still need a human playtest pass for spacing/difficulty fine-tuning — bots can't dodge-test.**
+  - **Checkpoint now gated to the 6th attempt** (user request): `engine.js` adds `JD.stageFails` (reset in `startStage`) + `JD.CHECKPOINT_AFTER=5`. Deaths 1-5 on a stage → full restart from start; from the 6th death on (and still only stage `id>=3`, past 50%) → mid-checkpoint respawn. Verified via eval loop.
+  - **Party-music pass** (user: "powerful strong-melody EDM party"): new tracks `s8…s14` in `audio.js` (DATA STORM/FIREWALL=dubstep; AURORA…WHITEOUT=future-bass/melodic-festival w/ new euphoric hooks `L.fut4-7`; EMBER GATE=eurodance big-room anthem `L.euro4`). PLUS a global **energy "punch-up"** to the shared engine that lifts ALL stages 1-15: master 0.9→0.95, lead vols up (euro .27→.30, future .26→.29, dub .24→.27) + brighter lead filter (4200→4800Hz), deeper club sidechain (duck floor .22→.18). Old stage-1-8 *note data* was left intact (user had tuned it by ear) — only the mix/energy was lifted. **Verify the new melodies by ear; tweak hooks/roots in `L.*`/`TRACKS` to taste.**
+  - Cache-bust bumped to **`?v=4`**.
+- **20-stage expansion + new toys (stages 4-8)** — prior session. Plan file: `C:\Users\Alex\.claude\plans\lets-open-and-adjust-glowing-snail.md` (full 20-stage roadmap: 5 worlds of ~4, speed 360→540, new theme per world). New engine mechanics, all additive:
   - **Per-stage speed** + **speed portals** (`SP(x,mult)`, kind `'speed'`; `p.speedMul`; fast=orange/slow=cyan gate).
   - **Moving saws**: `SAW(x,y,{ax:'v',amp,spd})` → engine oscillates `o.cy = o.cy0 + sin(time*spd)*amp*tile`.
   - **Mini-mode portal** (`P(x,'mini'|'big')`): `p.mini`, `p.size = playerSize*0.6`.
@@ -65,8 +70,9 @@ js/main.js        screen-flow state machine, input, persistence, audio wiring, R
 - Common beginner confusion: the repo page = code; `ryuk-123.github.io/juaseon-dash/` = playable game. After a push, Pages rebuilds ~1-2 min; tell them to **hard-refresh (Ctrl+Shift+R)** to bust browser cache of old .js.
 
 ## Likely next ideas (not yet done)
-- **Author stages 9-20** (names/themes/featured-toys already locked in the plan file; layouts TBD). Worlds 4-5 need new palettes THEME_AURORA + THEME_INFERNO + THEME_VOID.
-- Human playtest + difficulty tuning of stages 4-8 (spacing of moving saws / mini corridors / grav-dash chains).
+- **Author stages 16-20** (names/themes/featured-toys locked in the plan file; layouts TBD). Inferno world continues (16-18, THEME_INFERNO exists); Finale 19-20 still needs new palette **THEME_VOID**.
+- **Human playtest + difficulty tuning of stages 4-15** — spacing of moving saws / mini corridors / grav-dash chains / speed swings. Layouts use the proven STAGE2/3/8 spacing envelope but are bot-untested.
+- **Tune the new music (s8-s14) by ear** — adjust hooks (`L.fut4-7`, `L.euro4`, `L.dub3-4`), roots, bpm, or the global energy-lift constants in `audio.js` to taste.
 - Stage-select polish: card BEST% line is slightly clipped at 8 cards; consider per-world section labels.
 - Grav-orb glyph reads as a single down-arrow — a double-headed (↕) arrow would signal "flip" more clearly.
 - Trail tuning, per-world music character (darker glitch / hyperpop), buildup-then-drop intro, mobile polish.
