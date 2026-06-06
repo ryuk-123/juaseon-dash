@@ -149,62 +149,98 @@
       ctx.fillStyle = '#fff';
       ctx.beginPath(); ctx.moveTo(-s * 0.05, s * 0.22); ctx.lineTo(s * 0.02, s * 0.22); ctx.lineTo(-s * 0.015, s * 0.3); ctx.closePath(); ctx.fill();
     } else if (style === 'panda') {
-      // ----- cute red panda (Red Lee) -----
-      var cream = '#f6ead2', dark = '#241410', white = '#fbf4e6';
-      // pointy ears (cream outer, dark inner), poking above the head
-      function ear(side) {
+      // ----- cute red panda (Red Lee), modeled on the RED PANDA PAL reference -----
+      var cream = '#f7ecd6', white = '#fdf7ec', dark = '#23120c';
+      var tLight = '#c75f33', tDark = '#6e2c16', tTip = '#43190d', tEdge = '#3a1810';
+
+      // ---- big fluffy striped tail, curling from lower-right (drawn first, behind face) ----
+      var tail = [
+        [0.24, 0.42, 0.19, tDark], [0.39, 0.51, 0.185, tLight], [0.52, 0.52, 0.17, tDark],
+        [0.62, 0.44, 0.155, tLight], [0.66, 0.31, 0.14, tDark], [0.63, 0.18, 0.125, tLight],
+        [0.55, 0.09, 0.105, tTip]
+      ];
+      for (var ti = 0; ti < tail.length; ti++) {
+        var tg = tail[ti];
+        ctx.fillStyle = tEdge;
+        ctx.beginPath(); ctx.arc(tg[0] * s, tg[1] * s, tg[2] * s + s * 0.012, 0, 6.283); ctx.fill();
+        ctx.fillStyle = tg[3];
+        ctx.beginPath(); ctx.arc(tg[0] * s, tg[1] * s, tg[2] * s, 0, 6.283); ctx.fill();
+      }
+
+      // ---- ears: big rounded, cream outer + dark inner ----
+      var rpEar = function (side) {
         ctx.fillStyle = cream;
         ctx.beginPath();
-        ctx.moveTo(side * s * 0.18, -s * 0.40);
-        ctx.lineTo(side * s * 0.34, -s * 0.72);
-        ctx.lineTo(side * s * 0.46, -s * 0.40);
+        ctx.moveTo(side * 0.12 * s, -0.40 * s);
+        ctx.quadraticCurveTo(side * 0.30 * s, -0.80 * s, side * 0.50 * s, -0.56 * s);
+        ctx.quadraticCurveTo(side * 0.56 * s, -0.46 * s, side * 0.46 * s, -0.34 * s);
         ctx.closePath(); ctx.fill();
         ctx.fillStyle = dark;
         ctx.beginPath();
-        ctx.moveTo(side * s * 0.26, -s * 0.42);
-        ctx.lineTo(side * s * 0.34, -s * 0.62);
-        ctx.lineTo(side * s * 0.40, -s * 0.42);
+        ctx.moveTo(side * 0.22 * s, -0.40 * s);
+        ctx.quadraticCurveTo(side * 0.33 * s, -0.66 * s, side * 0.45 * s, -0.50 * s);
+        ctx.quadraticCurveTo(side * 0.48 * s, -0.44 * s, side * 0.42 * s, -0.36 * s);
         ctx.closePath(); ctx.fill();
-      }
-      ear(-1); ear(1);
-      // darker forehead stripes (red-panda markings)
-      ctx.strokeStyle = 'rgba(90,30,15,0.55)'; ctx.lineWidth = s * 0.05; ctx.lineCap = 'round';
-      ctx.beginPath();
-      ctx.moveTo(-s * 0.10, -s * 0.42); ctx.lineTo(-s * 0.07, -s * 0.18);
-      ctx.moveTo(s * 0.10, -s * 0.42); ctx.lineTo(s * 0.07, -s * 0.18);
-      ctx.stroke();
-      // white muzzle + cheeks
-      ctx.fillStyle = white;
-      ctx.beginPath(); ctx.ellipse(-s * 0.20, s * 0.16, s * 0.22, s * 0.20, 0, 0, 6.283); ctx.fill();
-      ctx.beginPath(); ctx.ellipse(s * 0.20, s * 0.16, s * 0.22, s * 0.20, 0, 0, 6.283); ctx.fill();
-      ctx.beginPath(); ctx.ellipse(0, s * 0.04, s * 0.16, s * 0.27, 0, 0, 6.283); ctx.fill();
-      // cream eyebrow patches
+      };
+      rpEar(-1); rpEar(1);
+
+      // ---- small cream forehead blaze ----
       ctx.fillStyle = cream;
-      ctx.beginPath(); ctx.ellipse(-s * 0.22, -s * 0.15, s * 0.11, s * 0.08, 0, 0, 6.283); ctx.fill();
-      ctx.beginPath(); ctx.ellipse(s * 0.22, -s * 0.15, s * 0.11, s * 0.08, 0, 0, 6.283); ctx.fill();
-      // big sparkly eyes
-      var ey = -s * 0.02, edx = s * 0.21, er = s * 0.12;
+      ctx.beginPath(); ctx.moveTo(0, -0.46 * s);
+      ctx.quadraticCurveTo(-0.07 * s, -0.30 * s, 0, -0.20 * s);
+      ctx.quadraticCurveTo(0.07 * s, -0.30 * s, 0, -0.46 * s);
+      ctx.closePath(); ctx.fill();
+
+      // ---- darker red side-stripe markings ----
+      ctx.strokeStyle = 'rgba(74,24,12,0.45)'; ctx.lineWidth = s * 0.055; ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(-0.40 * s, -0.30 * s); ctx.quadraticCurveTo(-0.46 * s, -0.10 * s, -0.42 * s, 0.10 * s);
+      ctx.moveTo(0.40 * s, -0.30 * s); ctx.quadraticCurveTo(0.46 * s, -0.10 * s, 0.42 * s, 0.10 * s);
+      ctx.stroke();
+
+      // ---- wide white muzzle / cheek mask ----
+      ctx.fillStyle = white;
+      ctx.beginPath(); ctx.ellipse(-0.19 * s, 0.20 * s, 0.23 * s, 0.21 * s, 0, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.ellipse(0.19 * s, 0.20 * s, 0.23 * s, 0.21 * s, 0, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.ellipse(0, 0.11 * s, 0.18 * s, 0.27 * s, 0, 0, 6.283); ctx.fill();
+
+      // ---- white teardrop eyebrow markings (the red-panda signature) ----
+      var brow2 = function (cx) {
+        ctx.fillStyle = white;
+        ctx.beginPath();
+        ctx.moveTo(cx, -0.11 * s);
+        ctx.quadraticCurveTo(cx - 0.12 * s, -0.17 * s, cx - 0.07 * s, -0.28 * s);
+        ctx.quadraticCurveTo(cx, -0.34 * s, cx + 0.07 * s, -0.28 * s);
+        ctx.quadraticCurveTo(cx + 0.12 * s, -0.17 * s, cx, -0.11 * s);
+        ctx.closePath(); ctx.fill();
+      };
+      brow2(-0.20 * s); brow2(0.20 * s);
+
+      // ---- big sparkly eyes (sit on the cheek/forehead border) ----
+      var ey = -0.01 * s, edx = 0.20 * s, er = 0.135 * s;
       ctx.fillStyle = dark;
       ctx.beginPath(); ctx.arc(-edx, ey, er, 0, 6.283); ctx.fill();
       ctx.beginPath(); ctx.arc(edx, ey, er, 0, 6.283); ctx.fill();
       ctx.fillStyle = '#ffffff';
       ctx.beginPath(); ctx.arc(-edx - er * 0.3, ey - er * 0.35, er * 0.42, 0, 6.283); ctx.fill();
       ctx.beginPath(); ctx.arc(edx - er * 0.3, ey - er * 0.35, er * 0.42, 0, 6.283); ctx.fill();
-      ctx.beginPath(); ctx.arc(-edx + er * 0.38, ey + er * 0.32, er * 0.2, 0, 6.283); ctx.fill();
-      ctx.beginPath(); ctx.arc(edx + er * 0.38, ey + er * 0.32, er * 0.2, 0, 6.283); ctx.fill();
-      // nose
+      ctx.beginPath(); ctx.arc(-edx + er * 0.4, ey + er * 0.35, er * 0.2, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.arc(edx + er * 0.4, ey + er * 0.35, er * 0.2, 0, 6.283); ctx.fill();
+
+      // ---- nose ----
       ctx.fillStyle = dark;
       ctx.beginPath();
-      ctx.moveTo(-s * 0.07, s * 0.10); ctx.lineTo(s * 0.07, s * 0.10);
-      ctx.quadraticCurveTo(s * 0.07, s * 0.17, 0, s * 0.19);
-      ctx.quadraticCurveTo(-s * 0.07, s * 0.17, -s * 0.07, s * 0.10);
+      ctx.moveTo(-0.075 * s, 0.07 * s); ctx.lineTo(0.075 * s, 0.07 * s);
+      ctx.quadraticCurveTo(0.075 * s, 0.15 * s, 0, 0.18 * s);
+      ctx.quadraticCurveTo(-0.075 * s, 0.15 * s, -0.075 * s, 0.07 * s);
       ctx.closePath(); ctx.fill();
-      // smile
-      ctx.strokeStyle = dark; ctx.lineWidth = s * 0.028; ctx.lineCap = 'round';
+
+      // ---- smile ----
+      ctx.strokeStyle = dark; ctx.lineWidth = s * 0.03; ctx.lineCap = 'round';
       ctx.beginPath();
-      ctx.moveTo(0, s * 0.19); ctx.lineTo(0, s * 0.24);
-      ctx.moveTo(0, s * 0.24); ctx.quadraticCurveTo(-s * 0.09, s * 0.31, -s * 0.14, s * 0.24);
-      ctx.moveTo(0, s * 0.24); ctx.quadraticCurveTo(s * 0.09, s * 0.31, s * 0.14, s * 0.24);
+      ctx.moveTo(0, 0.18 * s); ctx.lineTo(0, 0.23 * s);
+      ctx.moveTo(0, 0.23 * s); ctx.quadraticCurveTo(-0.09 * s, 0.30 * s, -0.15 * s, 0.23 * s);
+      ctx.moveTo(0, 0.23 * s); ctx.quadraticCurveTo(0.09 * s, 0.30 * s, 0.15 * s, 0.23 * s);
       ctx.stroke();
     }
     ctx.restore();
